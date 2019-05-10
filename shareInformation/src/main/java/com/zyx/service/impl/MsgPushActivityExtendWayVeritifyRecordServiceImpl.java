@@ -1,6 +1,6 @@
 package com.zyx.service.impl;
 
-import com.zyx.dao.MsgPushActivityExtendWayVeritifyRecordMapper;
+import com.zyx.mapper.MsgPushActivityExtendWayVeritifyRecordMapper;
 import com.zyx.model.MsgPushActivityExtendWayVeritifyRecord;
 import com.zyx.service.MsgPushActivityExtendWayVeritifyRecordService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

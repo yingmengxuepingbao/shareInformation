@@ -3,7 +3,7 @@ package com.zyx.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zyx.dao.MsgPushActivityExtendWayMapper;
+import com.zyx.mapper.MsgPushActivityExtendWayMapper;
 import com.zyx.model.MsgPushActivityExtendWay;
 import com.zyx.service.MsgPushActivityExtendWayService;
 

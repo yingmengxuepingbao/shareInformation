@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.zyx.dao.MsgPushUserMapper;
+import com.zyx.mapper.MsgPushUserMapper;
 import com.zyx.model.MsgPushUser;
 import com.zyx.service.MsgPushUserService;
 

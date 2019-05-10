@@ -1,6 +1,6 @@
 package com.zyx.service.impl;
 
-import com.zyx.dao.MsgPushRoleMapper;
+import com.zyx.mapper.MsgPushRoleMapper;
 import com.zyx.model.MsgPushRole;
 import com.zyx.service.MsgPushRoleService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

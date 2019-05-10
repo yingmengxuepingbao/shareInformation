@@ -25,7 +25,7 @@ import com.zyx.service.MsgPushUserService;
  * @author admin
  *
  */
-@Controller("actionController")
+@Controller
 public class ActionController {
 	
 	@Autowired

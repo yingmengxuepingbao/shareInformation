@@ -1,7 +1,7 @@
 package com.zyx.service.impl;
 
-import com.zyx.model.MsgPushProductBase;
 import com.zyx.dao.MsgPushProductBaseMapper;
+import com.zyx.model.MsgPushProductBase;
 import com.zyx.service.MsgPushProductBaseService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.zyx.service.impl;
 
-import com.zyx.model.MsgPushRewardUser;
 import com.zyx.dao.MsgPushRewardUserMapper;
+import com.zyx.model.MsgPushRewardUser;
 import com.zyx.service.MsgPushRewardUserService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,9 @@
 package com.zyx.model;
 
 import java.util.Date;
+
+import org.springframework.stereotype.Component;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
@@ -13,6 +16,7 @@ import java.io.Serializable;
  * @author yixin123
  * @since 2019-05-05
  */
+@Component
 @TableName("msg_push_user_role_relationship")
 public class MsgPushUserRoleRelationship implements Serializable {
 

@@ -1,7 +1,7 @@
 package com.zyx.service.impl;
 
-import com.zyx.model.MsgPushUserMembershipRelationship;
 import com.zyx.dao.MsgPushUserMembershipRelationshipMapper;
+import com.zyx.model.MsgPushUserMembershipRelationship;
 import com.zyx.service.MsgPushUserMembershipRelationshipService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

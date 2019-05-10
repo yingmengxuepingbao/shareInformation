@@ -24,8 +24,7 @@ public class MsgPushActivityExtendWayServiceImpl implements MsgPushActivityExten
 	@Override
 	public MsgPushActivityExtendWay selectById(String id) {
 		System.out.println("今天："+id);
-		msgPushActivityExtendWayMapper.selectById(id);
-		return null;
+		return msgPushActivityExtendWayMapper.selectById(id);
 	}
 
 }

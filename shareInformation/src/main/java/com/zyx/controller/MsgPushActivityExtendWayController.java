@@ -1,13 +1,10 @@
 package com.zyx.controller;
 
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zyx.model.MsgPushActivityExtendWay;
 import com.zyx.service.MsgPushActivityExtendWayService;
@@ -20,22 +17,17 @@ import com.zyx.service.MsgPushActivityExtendWayService;
  * @author yixin
  * @since 2019-05-05
  */
-@Controller
+@RestController
 @RequestMapping("/msgPushActivityExtendWay")
 public class MsgPushActivityExtendWayController {
 	 //@Resource
 	 @Autowired
 	 private MsgPushActivityExtendWayService msgPushActivityExtendWayService;
-	 
 	   
-	 //@PostMapping("/selectById")
-	 //@RequestMapping("/selectById")
-	 @GetMapping("/selectById")
+	 @RequestMapping(value = "/selectById")
 	 @ResponseBody
-	 public MsgPushActivityExtendWay selectById(String id){
-		 System.out.println("进来了");
-		 msgPushActivityExtendWayService.selectById("1");
-		 return null;
+	 public MsgPushActivityExtendWay selectById(String id){		 
+		 return msgPushActivityExtendWayService.selectById("1");
 	 }
 }
 

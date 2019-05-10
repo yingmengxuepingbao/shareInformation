@@ -1,7 +1,7 @@
 package com.zyx.service.impl;
 
-import com.zyx.model.MsgPushExtendWay;
 import com.zyx.dao.MsgPushExtendWayMapper;
+import com.zyx.model.MsgPushExtendWay;
 import com.zyx.service.MsgPushExtendWayService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

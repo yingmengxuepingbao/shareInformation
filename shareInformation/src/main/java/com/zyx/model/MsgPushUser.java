@@ -1,6 +1,9 @@
 package com.zyx.model;
 
 import java.util.Date;
+
+import org.springframework.stereotype.Component;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
@@ -13,7 +16,9 @@ import java.io.Serializable;
  * @author yixin123
  * @since 2019-05-05
  */
+
 @TableName("msg_push_user")
+@Component
 public class MsgPushUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,7 +68,11 @@ public class MsgPushUser implements Serializable {
      */
     private Integer isDelete;
 
-
+    /*
+     * 验证码
+     */
+    private String  verificationCode;
+    
     public String getUserId() {
         return userId;
     }
@@ -136,7 +145,15 @@ public class MsgPushUser implements Serializable {
         this.isDelete = isDelete;
     }
 
-    @Override
+    public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	@Override
     public String toString() {
         return "MsgPushUser{" +
         "userId=" + userId +
@@ -148,6 +165,7 @@ public class MsgPushUser implements Serializable {
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +
         ", isDelete=" + isDelete +
+        ", verificationCode=" + verificationCode +
         "}";
     }
 }

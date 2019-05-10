@@ -1,8 +1,6 @@
 package com.zyx.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.zyx.model.MsgPushActivityExtendWay;
@@ -18,5 +16,5 @@ import com.zyx.model.MsgPushActivityExtendWay;
 @Mapper
 public interface MsgPushActivityExtendWayMapper extends BaseMapper<MsgPushActivityExtendWay> {
 
-	MsgPushActivityExtendWay selectById(@Param("id") String id);
+	MsgPushActivityExtendWay selectById(String id);
 }

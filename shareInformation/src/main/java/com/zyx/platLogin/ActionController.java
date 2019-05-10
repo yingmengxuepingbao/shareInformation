@@ -3,7 +3,6 @@ package com.zyx.platLogin;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zyx.model.MsgPushActivityExtendWay;
 import com.zyx.model.MsgPushUser;
+import com.zyx.service.MsgPushActivityExtendWayService;
 import com.zyx.service.MsgPushUserService;
 
 /**
@@ -24,7 +25,7 @@ import com.zyx.service.MsgPushUserService;
  * @author admin
  *
  */
-@Controller
+@Controller("actionController")
 public class ActionController {
 	
 	@Autowired
@@ -56,6 +57,28 @@ public class ActionController {
 		return returnMap;
 	}
 	
+	
+	 @Autowired
+	 private MsgPushActivityExtendWayService msgPushActivityExtendWayService;
+	   
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	@ResponseBody
+	public String test() {
+		System.out.println("访问到了");
+		MsgPushActivityExtendWay msgPushActivityExtendWay =msgPushActivityExtendWayService.selectById("1");
+		String activityId = msgPushActivityExtendWay.getActivityId();
+		System.out.println("activityId="+activityId);
+		return "成功";
+	}
+	@RequestMapping(value = "/test1", method = RequestMethod.GET)
+	@ResponseBody
+	public String test1() {
+		System.out.println("访问到了111");
+		MsgPushUser msgPushUser = msgPushUserService.selectById("1");
+		String userName = msgPushUser.getUserName();
+		System.out.println("userName="+userName);
+		return "成功";
+	}
 	/** 
      * 同时得到两个参数 
      *  

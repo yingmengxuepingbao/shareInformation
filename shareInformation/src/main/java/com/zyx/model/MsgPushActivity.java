@@ -3,6 +3,8 @@ package com.zyx.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
@@ -14,6 +16,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * @author yixin123
  * @since 2019-05-05
  */
+@Component
 @TableName("msg_push_activity")
 public class MsgPushActivity implements Serializable {
 

@@ -1,6 +1,6 @@
 package com.zyx.service.impl;
 
-import com.zyx.dao.MsgPushUserWxRelationshipMapper;
+import com.zyx.mapper.MsgPushUserWxRelationshipMapper;
 import com.zyx.model.MsgPushUserWxRelationship;
 import com.zyx.service.MsgPushUserWxRelationshipService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

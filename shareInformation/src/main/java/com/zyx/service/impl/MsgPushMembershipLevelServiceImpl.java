@@ -1,6 +1,6 @@
 package com.zyx.service.impl;
 
-import com.zyx.dao.MsgPushMembershipLevelMapper;
+import com.zyx.mapper.MsgPushMembershipLevelMapper;
 import com.zyx.model.MsgPushMembershipLevel;
 import com.zyx.service.MsgPushMembershipLevelService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

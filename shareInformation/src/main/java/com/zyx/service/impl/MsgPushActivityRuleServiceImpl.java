@@ -1,6 +1,6 @@
 package com.zyx.service.impl;
 
-import com.zyx.dao.MsgPushActivityRuleMapper;
+import com.zyx.mapper.MsgPushActivityRuleMapper;
 import com.zyx.model.MsgPushActivityRule;
 import com.zyx.service.MsgPushActivityRuleService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

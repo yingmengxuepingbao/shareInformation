@@ -1,6 +1,6 @@
 package com.zyx.service.impl;
 
-import com.zyx.dao.MsgPushProductExtendMapper;
+import com.zyx.mapper.MsgPushProductExtendMapper;
 import com.zyx.model.MsgPushProductExtend;
 import com.zyx.service.MsgPushProductExtendService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

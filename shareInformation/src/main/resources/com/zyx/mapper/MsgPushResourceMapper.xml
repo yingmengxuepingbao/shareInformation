@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyx.mapper.MsgPushResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zyx.model.MsgPushResource">
+        <result column="msg_push_resource_id" property="msgPushResourceId" />
+        <result column="msg_push_resource_name" property="msgPushResourceName" />
+        <result column="msg_push_resource_type" property="msgPushResourceType" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="isEnable" property="isEnable" />
+    </resultMap>
+
+</mapper>

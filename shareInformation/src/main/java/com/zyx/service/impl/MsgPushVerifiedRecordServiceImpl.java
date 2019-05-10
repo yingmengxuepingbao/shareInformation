@@ -1,6 +1,6 @@
 package com.zyx.service.impl;
 
-import com.zyx.dao.MsgPushVerifiedRecordMapper;
+import com.zyx.mapper.MsgPushVerifiedRecordMapper;
 import com.zyx.model.MsgPushVerifiedRecord;
 import com.zyx.service.MsgPushVerifiedRecordService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

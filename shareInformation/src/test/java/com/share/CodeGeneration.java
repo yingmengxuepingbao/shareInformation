@@ -92,9 +92,9 @@ public class CodeGeneration {
         pc.setController("controller");
         pc.setService("service");
         pc.setServiceImpl("service.impl");
-        pc.setMapper("dao");
+        pc.setMapper("mapper");
         pc.setEntity("model");
-        pc.setXml("xml");
+        pc.setXml("mapper");
         mpg.setPackageInfo(pc);
  
         // 执行生成

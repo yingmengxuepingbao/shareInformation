@@ -1,6 +1,6 @@
 package com.zyx.service.impl;
 
-import com.zyx.dao.MsgPushExtendWayMapper;
+import com.zyx.mapper.MsgPushExtendWayMapper;
 import com.zyx.model.MsgPushExtendWay;
 import com.zyx.service.MsgPushExtendWayService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

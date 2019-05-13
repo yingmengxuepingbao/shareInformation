@@ -2,6 +2,8 @@ package com.zyx.mapper;
 
 import com.zyx.model.MsgPushActivity;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
@@ -17,4 +19,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 @Mapper
 public interface MsgPushActivityMapper extends BaseMapper<MsgPushActivity> {
 
+	/*
+	 * 我的发布：根据用户编号user_id（msg_push_user）即activity_initiate_user_id（msg_push_activity）查询数据
+	 */
+	public 	List<MsgPushActivity> selectActivityById(String activityInitiateUserId) ;
 }

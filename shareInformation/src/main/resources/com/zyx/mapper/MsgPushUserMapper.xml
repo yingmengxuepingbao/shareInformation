@@ -27,9 +27,10 @@
     </select>
     
     <!-- 根据参数Map（用户名，密码，角色）查询用户 -->
-     <select id="queryUserByMap" parameterMap="java.util.Map" resultMap="BaseResultMap">
+     <select id="queryUserByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+       user_id,user_name,user_pwd,phone_num,user_sex,user_email
+      ,u.create_time,u.update_time,isDelete
         FROM msg_push_user u
         ,msg_push_role r 
         WHERE u.user_id=r.create_user_id 

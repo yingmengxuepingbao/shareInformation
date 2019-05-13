@@ -193,12 +193,15 @@ function doLogin() {
 			  },
 		  dataType:"json",
 		  success:function (data) {
-			/* var jsonObj = JSON.stringify(data);// 转成JSON格式
-			 var result = $.parseJSON(jsonObj);// 转成JSON对象
-			 console.log(result);*/
+			  /* var jsonObj = JSON.stringify(data);// 转成JSON格式
+				 var result = $.parseJSON(jsonObj);// 转成JSON对象
+				 console.log(result);*/
+			  alert(data+"---"+ data.result );
 			  if(data.result=="success"){
 				  alert("成功");
 				  window.location.href ="http://localhost:8080/view/platLogin/home.html"; 
+			  }else{
+				  alert("失败");
 			  }
 		  }, 
 		  error:function () {

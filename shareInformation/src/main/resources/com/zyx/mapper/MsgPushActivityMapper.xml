@@ -17,6 +17,10 @@
         <result column="update_user_id" property="updateUserId" />
         <result column="isEnable" property="isEnable" />
         <result column="isVerified" property="isVerified" />
+        
+        <result column="activityRuleName" property="activityRuleName" jdbcType="VARCHAR" />
+    	<result column="receivingWayName" property="receivingWayName" jdbcType="VARCHAR" />
+    	<result column="userName" property="userName" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List">
 	    activity_id,activity_name,activity_initiate_user_id,activity_rule_id
@@ -24,12 +28,29 @@
 	    ,create_time,update_time,update_user_id,isEnable,isVerified
     </sql>
 
+<!-- 我的发布：根据用户编号user_id（msg_push_user）即activity_initiate_user_id（msg_push_activity）查询数据
+isEnable：1 启用状态，start_time < new < end_time 截至时间大于现在时间     大于&gt;   小于&lt; -->
 	<select id="selectActivityById"  parameterType="String" resultMap="BaseResultMap">
-	 	select
-        	<include refid="Base_Column_List"/>
-        from msg_push_activity
-        where
-        activity_initiate_user_id=#{activityInitiateUserId,jdbcType=VARCHAR} 
+	 	select 
+	 		a.activity_id,a.activity_name,a.activity_initiate_user_id
+	 		,a.activity_rule_id,a.reward_content,a.reward_receive_method_id
+		 	,DATE_FORMAT(a.start_time,'%Y-%m-%d %H:%i:%s') start_time 
+		 	,DATE_FORMAT(a.end_time,'%Y-%m-%d %H:%i:%s') end_time
+			,a.isEnable,a.isVerified
+			,r.activity_rule_name activityRuleName
+			,u.user_name userName
+			,w.receiving_way_name receivingWayName
+        from 
+        	msg_push_activity a,msg_push_activity_rule r, 
+        	msg_push_user u,msg_push_award_receiving_way w
+        where 
+        	a.activity_rule_id = r.activity_rule_id
+        	and a.activity_initiate_user_id = u.user_id
+        	and a.reward_receive_method_id = w.receiving_way_id
+        	and a.activity_initiate_user_id=#{activityInitiateUserId,jdbcType=VARCHAR} 
+        	and a.isEnable=1
+        	and DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s') &gt;  DATE_FORMAT(a.start_time,'%Y-%c-%d %h:%i:%s')
+        	and DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s') &lt;  DATE_FORMAT(a.end_time,'%Y-%c-%d %h:%i:%s')
 	</select>
 
 </mapper>

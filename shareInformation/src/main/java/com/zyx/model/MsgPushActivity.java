@@ -56,22 +56,22 @@ public class MsgPushActivity implements Serializable {
      * 活动起始时间
      */
     @TableField("start_time")
-    private Date startTime;
+    private String startTime;
     /**
      * 活动截止时间
      */
     @TableField("end_time")
-    private Date endTime;
+    private String endTime;
     /**
      * 创建日期
      */
     @TableField("create_time")
-    private Date createTime;
+    private String createTime;
     /**
      * 更新日期
      */
     @TableField("update_time")
-    private Date updateTime;
+    private String updateTime;
     /**
      * 更新人
      */
@@ -86,7 +86,13 @@ public class MsgPushActivity implements Serializable {
      */
     private Integer isVerified;
 
-
+    //活动规则
+    private String activityRuleName;
+    //奖品领取方式
+    private String receivingWayName;
+    //信息发布者
+    private String userName;
+    
     public String getActivityId() {
         return activityId;
     }
@@ -135,39 +141,39 @@ public class MsgPushActivity implements Serializable {
         this.rewardReceiveMethodId = rewardReceiveMethodId;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
+    public String getStartTime() {
+		return startTime;
+	}
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
 
-    public Date getEndTime() {
-        return endTime;
-    }
+	public String getEndTime() {
+		return endTime;
+	}
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public String getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+	public String getUpdateTime() {
+		return updateTime;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
 
-    public String getUpdateUserId() {
+	public String getUpdateUserId() {
         return updateUserId;
     }
 
@@ -191,7 +197,33 @@ public class MsgPushActivity implements Serializable {
         this.isVerified = isVerified;
     }
 
-    @Override
+    
+    
+    public String getActivityRuleName() {
+		return activityRuleName;
+	}
+
+	public void setActivityRuleName(String activityRuleName) {
+		this.activityRuleName = activityRuleName;
+	}
+
+	public String getReceivingWayName() {
+		return receivingWayName;
+	}
+
+	public void setReceivingWayName(String receivingWayName) {
+		this.receivingWayName = receivingWayName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	@Override
     public String toString() {
         return "MsgPushActivity{" +
         "activityId=" + activityId +
@@ -207,6 +239,9 @@ public class MsgPushActivity implements Serializable {
         ", updateUserId=" + updateUserId +
         ", isEnable=" + isEnable +
         ", isVerified=" + isVerified +
+        ", activityRuleName=" + activityRuleName +
+        ", receivingWayName=" + receivingWayName +
+        ", userName=" + userName +
         "}";
     }
 }

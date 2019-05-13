@@ -40,6 +40,21 @@ CREATE TABLE `msg_push_activity`  (
   `isVerified` tinyint(1) NULL DEFAULT NULL COMMENT '是否完成审核'
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '活动表' ROW_FORMAT = Compact;
 
+
+-- ----------------------------
+-- Table structure for msg_push_award_receiving_way
+-- ----------------------------
+DROP TABLE IF EXISTS `msg_push_award_receiving_way`;
+CREATE TABLE `msg_push_award_receiving_way`  (
+`receiving_way_id` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '奖励领取方式编号',
+`receiving_way_name` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '奖励发放方式',
+`create_user_id` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人员',
+`start_time` datetime(0) NULL DEFAULT NULL COMMENT '有效起始时间',
+`end_time` datetime(0) NULL DEFAULT NULL COMMENT '有效截止时间',
+`create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
+`update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新日期'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '奖励领取方式表' ROW_FORMAT = Compact;
+
 -- ----------------------------
 -- Table structure for msg_push_activity_extend_way
 -- ----------------------------
@@ -297,35 +312,23 @@ CREATE TABLE `msg_push_verified_record`  (
 SET FOREIGN_KEY_CHECKS = 1;
 
 
+INSERT INTO `msg_push_user` VALUES ('1', 'zx', '123456', '13161372951', '女', '1163003193', '2019-5-15 22:24:11', '2019-5-15 22:24:14', 1);
+INSERT INTO `msg_push_user` VALUES ('2', 'zyx', '123456', '15653693446', '男', '1163003193', '2019-5-15 22:25:37', '2019-5-15 22:25:40', 1);
+INSERT INTO `msg_push_role` VALUES ('1', 'administrators', '1', '2019-5-15 22:26:06', '2019-5-15 22:26:09');
+INSERT INTO `msg_push_role` VALUES ('2', 'ordinaryMember', '2', '2019-5-15 22:28:05', '2019-5-15 22:28:08');
 
+truncate table msg_push_activity;
+INSERT INTO `msg_push_activity` VALUES ('1', '张艺馨卖樱桃1', '1','1', '一斤樱桃','1','2019-5-15 22:28:05', '2019-5-15 22:28:08','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','1');
+INSERT INTO `msg_push_activity` VALUES ('2', '张艺馨卖樱桃2', '1','1', '10元代金券','1','2019-5-15 22:28:05', '2019-5-15 22:28:08','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','1');
+INSERT INTO `msg_push_activity` VALUES ('3', '张艺馨卖樱桃3', '1','1', '5元代金券','1','2019-5-15 22:28:05', '2019-5-15 22:28:08','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','1');
+ 
 
-
-INSERT INTO `msg_push_user` VALUES ('1', 'zx', '123456', '13161372951', '女', '1163003193', '2019-5-9 22:24:11', '2019-5-9 22:24:14', 1);
-INSERT INTO `msg_push_user` VALUES ('2', 'zyx', '123456', '15653693446', '男', '1163003193', '2019-5-9 22:25:37', '2019-5-9 22:25:40', 1);
-INSERT INTO `msg_push_role` VALUES ('1', 'administrators', '1', '2019-5-9 22:26:06', '2019-5-9 22:26:09');
-INSERT INTO `msg_push_role` VALUES ('2', 'ordinaryMember', '2', '2019-5-9 22:28:05', '2019-5-9 22:28:08');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO `msg_push_activity_rule` VALUES('1','转发消息送樱桃','1','1','2019-5-15 22:28:05','2019-5-15 22:28:10','1');
+INSERT INTO `msg_push_activity_rule` VALUES('2','转发消息送代金券','1','1','2019-5-15 22:28:05','2019-5-15 22:28:10','1');
+INSERT INTO `msg_push_activity_rule` VALUES('3','转发消息送果币','1','1','2019-5-15 22:28:05','2019-5-15 22:28:10','1');
+ 
+ 
+ INSERT INTO `msg_push_award_receiving_way` VALUES('1','快递发货（快递费自费）','1','2019-5-15 22:28:05','2019-5-15 22:28:05','2019-5-15 22:28:05','2019-5-15 22:28:05');
+ INSERT INTO `msg_push_award_receiving_way` VALUES('2','线上发放','1','2019-5-15 22:28:05','2019-5-15 22:28:05','2019-5-15 22:28:05','2019-5-15 22:28:05');
+ INSERT INTO `msg_push_award_receiving_way` VALUES('3','线上发放','1','2019-5-15 22:28:05','2019-5-15 22:28:05','2019-5-15 22:28:05','2019-5-15 22:28:05');
+ 

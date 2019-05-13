@@ -18,5 +18,18 @@
         <result column="isEnable" property="isEnable" />
         <result column="isVerified" property="isVerified" />
     </resultMap>
+    <sql id="Base_Column_List">
+	    activity_id,activity_name,activity_initiate_user_id,activity_rule_id
+	    ,reward_content,reward_receive_method_id,start_time,end_time
+	    ,create_time,update_time,update_user_id,isEnable,isVerified
+    </sql>
+
+	<select id="selectActivityById"  parameterType="String" resultMap="BaseResultMap">
+	 	select
+        	<include refid="Base_Column_List"/>
+        from msg_push_activity
+        where
+        activity_initiate_user_id=#{activityInitiateUserId,jdbcType=VARCHAR} 
+	</select>
 
 </mapper>

@@ -48,11 +48,9 @@ public class ActionController {
 		System.out.println(userName+"  "+userPwd+" "+msgPushRoleName);
 		//查询是否存在
 		MsgPushUser msgPushUser = msgPushUserService.queryUserByMap(map);
-		System.out.println(msgPushUser.getUserName());
 		if(msgPushUser!=null) {
+			System.out.println(msgPushUser.getUserName());
 			returnMap.put("result", "sussess");
-		}else{
-			returnMap.put("result", "fail");
 		}
 		return returnMap;
 	}

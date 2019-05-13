@@ -3,27 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <title>我的发布</title>
+<link href="../../css/weixin_myPublish.css" rel="stylesheet" type="text/css" />
+<script src="../../js/jquery-1.12.3.min.js"></script>
+<script src="../../js/gt.js"></script>
+
 </head>
 <body>
- <div>
-	<img alt="用户" src="../../img/weixin_img/user.png">
-	<p>欢迎<em></em>的到来</p>
-	<input type="radio" checked="checked" value="金牌会员">金牌会员
- </div>
- <div>
- <table border="0" cellspacing="0" cellpadding="0">
- 	<tr>
- 		<td>
- 		
- 		
- 		</td>
- 		<td><input type="button" id="zhuanfa" value="转发"></td>
- 	</tr>
- 
- </table>
- 
- 
- </div>
 
+ <div  class="fudong">
+		<img alt="用户" src="../../img/weixin_img/user.png" >
+		<p>欢迎<em></em>的到来</p>
+		<input type="hidden" id="activityInitiateUserId" value="1">
+		<input type="radio" checked="checked" value="金牌会员">金牌会员
+ </div>
+ <div align="center">
+ <table border="1" cellspacing="0" cellpadding="0" >
+	 <tbody id='tbody'>
+		 <!-- 循环开始 -->
+		  <!-- 循环结束 -->
+	  </tbody>
+ </table>
+ </div>
+ 
+ <script type="text/javascript">
+var activityInitiateUserId =$("#activityInitiateUserId").val();
+alert(activityInitiateUserId);
+$.ajax({
+	  type: 'POST',
+	  url: "http://localhost:8080/selActivityByUserId",
+	  data:{
+		  activityInitiateUserId:activityInitiateUserId
+		  },
+	  dataType:"json",
+	  success:function (data) {
+		var jsonObj = JSON.stringify(data);// 转成JSON格式
+		 var result = $.parseJSON(jsonObj);// 转成JSON对象
+		 console.log(result);
+		 alert(result);
+		 alert(result.length);
+		for(var i=0;i<result.length;i++){
+			var str = "<tr>"
+			+"<td colspan='5'>"
+			+"<p><span>活动名称： </span>"+result[i].activityName+"</p>"
+			+"<p><span>活动规则： </span>"+result[i].activityRuleId+"</p>"
+			+"<p><span>奖品领取方式： </span>"+result[i].rewardReceiveMethodId+"</p>"
+			+"<p><span>信息发布者： </span>"+result[i].activityInitiateUserId+"</p>"
+			+"<p><span>活动时间： </span>"+result[i].startTime+"~"+result[i].endTime+"</p>"
+			+"</td>"
+			+"<td colspan='2'><input type='button' id='zhuanfa"+i+"' value='转发'></td>"
+			+"</tr>";
+ 		$("#tbody").after(str);
+		}
+	  }, 
+	  error:function () {
+      window.alert("查询失败");
+    }
+	});
+</script>
 </body>
+
 </html>

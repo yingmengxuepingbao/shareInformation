@@ -198,14 +198,13 @@ function doLogin() {
 				 console.log(result);*/
 			  alert(data+"---"+ data.result );
 			  if(data.result=="success"){
-				  alert("成功");
 				  window.location.href ="http://localhost:8080/view/platLogin/home.html"; 
 			  }else{
-				  alert("失败");
+				  alert("查询失败");
 			  }
 		  }, 
 		  error:function () {
-	        window.alert("查询失败");
+	        window.alert("登录失败");
 	      }
 		});
 }

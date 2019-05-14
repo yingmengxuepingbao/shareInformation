@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试时间</title>
+<script src="../../js/jquery-1.12.3.min.js"></script>
+<script src="../../js/gt.js"></script><base>
+</head>
+<body>
+<div>
+<input type="text" placeholder="2018/01/01 00:00" id="startTime"> 
+<input type="text" placeholder="2018/01/01 00:00" id="endTime">  
+</div>
+<script type="text/javascript">
+$('#startTime').mobiscroll().datetime({
+    theme: theme,
+    mode: mode,
+    display: display,
+    lang: lang,
+    timeFormat: 'HH:00',
+    timeWheels: 'HH:00',
+    dateFormat: "yyyy-mm-dd",
+    stepMinute: 1,
+    onSelect: function (textVale, inst) { //选中时触发事件 
+        var array = textVale.split('-');
+        var ay = array[2].split(' ');
+        var arry = ay[1].split(':');
+        $('#endTime').mobiscroll().datetime({
+            theme: theme,
+            mode: mode,
+            display: display,
+            lang: lang,
+            timeFormat: 'HH:00',
+            timeWheels: 'HH:00',
+            minDate: new Date(array[0], array[1] - 1, ay[0], arry[0]),
+            stepMinute: 1,
+        });
+    }
+});
+</script>
+</body>
+</html>

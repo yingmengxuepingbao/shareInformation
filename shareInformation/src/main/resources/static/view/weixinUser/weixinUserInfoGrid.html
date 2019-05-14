@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>微信用户列表</title>
+	<link href="../../css/labeSelect.css" type="text/css"/>  
+	<script src="../../js/jquery-1.12.3.min.js"></script>
+	<script src="../../js/gt.js"></script>
+	
+</head>
+	<body>
+	<input type="hidden" id="labelIdStrList" value=""/>
+		<div class="search_tit">微信用户列表查询</div>
+		<form method="post" target="_blank">
+		<table class="search_table">
+			<tr>
+				<td>
+					<div>会员姓名</div>
+					<input class="search_text" type="text" name="userNameCn" id="userNameCn"/>
+				</td>
+				<td>
+					<div>会员手机号</div>
+					<input class="search_text" type="text" name="mobilePhone" id="mobilePhone"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>身份证号</div>
+					<input class="search_text" type="text" name="idCard" id="idCard"/>
+				</td>
+				<td>
+					<div>会员标签</div>
+					<input class="search_text" type="text" name="userLabel" id="userLabel"/>
+				</td>
+				<td  class="right">
+					<input id="submitButton" class="button" value="搜索" type="button"  onclick="submitKey(1)"/>
+					<tl:permission code="wx_user_upd"><input id="submitButton" class="button" value="更新用户" type="button"  onclick="getAllUserInfo()"/></tl:permission>
+				</td> 
+			</tr>
+			<tr>
+			</tr>
+		</table> 
+			</form>
+		<table style="width:500px; height:30px;">
+			<tr>
+				<td><input id="addLabelButton" class="button" value="添加标签" type="button"  onclick="showAddLabelDiv()"/></td>
+			</tr>
+				
+		</table>
+		<table id="gridTable"></table>
+		<div id="gridPager"></div>
+		
+		<div class="showDiv" id="showTagDiv" style="display: none;">
+			<div class="auto-re-pop">
+			  <span class="pophead">添加标签<em id="tagEm" style="color: red;margin-left: 180px;"></em></span>
+			  <div class="editkeyword">
+			    <!--编辑框在这里-->
+			    <textarea name="tagTxt" id="tagTxt" cols="3" rows="3" onblur="checkTagTxt()"></textarea>
+			  </div>
+			  <input type="hidden" name="groupId" id="groupId" value="" />
+			  <input type="hidden" name="wxUserId" id="wxUserId" value="" />
+			  <div class="addbtn">
+			    <input name="keyWordsAddTxt" type="button" value="确定" class="addbtn_confirm" onclick="tagAddDiv()" />
+			    <input name="cancel" type="button" value="取消" class="addbtn_cancle" onclick="cancelDiv()" />
+			  </div>
+			</div>
+		</div>
+		<div id="light" class="white_content">    <div id="base" class="main_msgbox">
+        <div class="main_tit_msgbox">添加分组</div>
+        <div class="content_msgbox">
+            <!-- Unnamed (列表选择框) -->
+            <div id="u2" class="ax_列表选择框">
+            <select id="laft" size="2" multiple class="left_msgbox">
+            </select>
+            </div>
+            <!-- Unnamed (HTML Button) -->
+            <div class="middle_msgbox">
+              <div id="u3" class="ax_html_button_msgbox">
+                <input id="u3_input" type="submit" style=" width:68px; height:30px;" value="添加" onclick="addLabel()"/>
+              </div>
+                <div id="u3" class="ax_html_button_msgbox">
+                <input id="u3_input" type="submit" style=" width:68px; height:30px;"  value="取消添加" onclick="quXiaoAdd()"/>
+              </div>
+            </div>
+            <!-- Unnamed (列表选择框) -->
+            <div id="u4" class="ax_列表选择框" >
+                <select id="right" size="2" class="right_msgbox">
+                </select>
+              </div>
+        </div>
+        <!-- Unnamed (HTML Button) -->
+        <div class="foot_msgbox">
+            <input id="u5_input" type="button"  style=" width:68px; height:30px;"  value="确定" onclick="updateCardLabel()"/>
+            <input id="u6_input" type="submit"  style=" width:68px; height:30px;"  value="取消" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"/>
+        </div>
+    	</div><a href = "javascript:void(0)" style="float:right" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">关闭</a></div> 
+        <div id="fade" class="black_overlay"></div> 
+		
+	</body>
+	<script type="text/javascript" >
+	/* var permissionId = ${permissionId};
+	 postData();
+	 getCardLabel(); */
+	</script>
+</html>

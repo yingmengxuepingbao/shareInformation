@@ -41,18 +41,6 @@ public class MsgPushActivityController {
 		String activityInitiateUserId =request.getParameter("activityInitiateUserId");
 		System.out.println("activityInitiateUserId="+activityInitiateUserId);
 		List<MsgPushActivity> list = msgPushActivityService.selectActivityById(activityInitiateUserId);
-		/*
-		 * System.out.println(list.size()); if(list.size()>0) { for(MsgPushActivity
-		 * msgPushActivity:list) { String activityRuleName =
-		 * msgPushActivity.getActivityRuleName(); String receivingWayName =
-		 * msgPushActivity.getReceivingWayName(); String userName =
-		 * msgPushActivity.getUserName(); String
-		 * startTime=msgPushActivity.getStartTime(); String endTime
-		 * =msgPushActivity.getEndTime();
-		 * System.out.println("activityRuleName = "+activityRuleName
-		 * +"receivingWayName = "+receivingWayName+"userName = "+userName+"startTime = "
-		 * +startTime +"endTime= "+endTime); } }
-		 */
 		return list;
 	}
 }

@@ -3,18 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <title>我的发布</title>
-<link href="../../css/weixin_myPublish.css" rel="stylesheet" type="text/css" />
-<script src="../../js/jquery-1.12.3.min.js"></script>
-<script src="../../js/gt.js"></script>
 
+<script src="../../js/jquery-1.12.3.min.js"></script>
+<script src="../../js/gt.js"></script><base>
+<style>
+	.fudong{
+		width: 100%;
+		display: flex;
+		position: relative;
+	}
+	.fudong img{
+		width: 50px;
+		height: 50px;
+
+	}
+	.myTitle{
+		flex: 1;
+
+	}
+	.myRight{
+	}
+	
+	.userName{
+	/* 去掉文本框的背景 */
+		border:0px;
+		background:none;
+		/*字体加粗，斜体，红色*/
+		font-weight:bold;
+		font-style: italic;
+		color:#FF0000;
+		/*字体居中，大小*/
+		text-align: center;
+		font-size:18px;
+        height:50px;
+        width: 50px;
+	}
+</style>
 </head>
 <body>
 
- <div  class="fudong">
+ <div class="fudong" style="width: 100%">
 		<img alt="用户" src="../../img/weixin_img/user.png" >
-		<p>欢迎<em></em>的到来</p>
+		<p class="myTitle">欢迎<input id="userName" class="userName">的到来</p>
 		<input type="hidden" id="activityInitiateUserId" value="1">
-		<input type="radio" checked="checked" value="金牌会员">金牌会员
+		<div class="myRight"><input type="radio" checked="checked" value="金牌会员">金牌会员</div>
  </div>
  <div align="center" id="divData">
  <table border="1" cellspacing="0" cellpadding="0" >
@@ -27,7 +59,6 @@
  
  <script type="text/javascript">
 var activityInitiateUserId =$("#activityInitiateUserId").val();
-alert(activityInitiateUserId);
 $.ajax({
 	  type: 'POST',
 	  url: "http://localhost:8080/selActivityByUserId",
@@ -39,9 +70,8 @@ $.ajax({
 		var jsonObj = JSON.stringify(data);// 转成JSON格式
 		 var result = $.parseJSON(jsonObj);// 转成JSON对象
 		 console.log(result);
-		 alert(result);
-		 alert(result.length);
 		 if(result.length>0){//存在数据时，拼接数据
+			 $("#userName").val(result[1].userName);
 			for(var i=0;i<result.length;i++){
 				var str = "<tr>"
 				+"<td colspan='5'>"

@@ -1,0 +1,53 @@
+/*’˚ÃÂ…Ë÷√*/
+body{
+	padding:0px;
+	margin:0px;
+	color:#000;
+	font-size:12px;
+	font-family:"Œ¢»Ì—≈∫⁄",tahoma,arial,sans-serif;
+	}
+table.information{
+	margin:0px auto;
+	}
+table.information td.activity_inf{
+	text-align:right;
+	font-size:18px;
+	color:#333;
+	}
+table.information td input{
+	border:solid #CCC 2px;
+	background:#FFF;
+	width:280px;
+	height:45px;
+	line-height:45px;
+	font-size:18px;
+	color:#333;
+	padding-left:13px;
+	font-family:Verdana, Geneva, sans-serif;
+	}
+table.information td textarea{
+	border:solid #CCC 2px;
+	background:#FFF;
+	width:280px;
+	height:45px;
+	line-height:45px;
+	font-size:18px;
+	color:#333;
+	padding-left:13px;
+	font-family:Verdana, Geneva, sans-serif;
+	}
+table.information em{
+	display:block;
+	font-size:14px;
+	margin:0px 15px;
+	text-align:left;
+	color:#F00;
+	line-height:18px;
+	display:none;
+	}
+	
+.input_text {
+	width: 40%;
+	height: 21px;
+	line-height: 25px;
+}

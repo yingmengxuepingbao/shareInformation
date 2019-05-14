@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>信息发布</title>
+	<!-- 样式 -->
+	<link href="../../css/informationRelease.css" rel="stylesheet" type="text/css" />
+	<script src="../../js/jquery-1.12.3.min.js"></script>
+	<script src="../../js/gt.js"></script>
+	
+</head>
+<body>
+	<!-- <div>信息发布</div> -->
+	<input type="hidden" id="activityInitiateUserId" value="1">
+	<div>
+	<table border="0" cellspacing="15" cellpadding="0" class="information">
+		<tr>
+			<td class="activity_inf">活动名称：&nbsp;</td>
+			<td colspan="2">
+				<input id="activityName" name="activityName" type="text" />
+				<em id="activityNameNull">请输入活动名称</em>
+			</td>
+		</tr>
+		<tr>
+			<td class="activity_inf">活动规则：&nbsp;</td>
+			<td colspan="2">
+				<textarea  id="activityRuleName" name="activityRuleName" cols="39" rows="6"></textarea>
+				<em id="activityRuleNameNull">请输入活动规则</em>
+			</td>
+		</tr>
+		<tr>
+			<td class="activity_inf">奖励内容：&nbsp;</td>
+			<td colspan="2">
+				<input id="rewardContent" name="rewardContent" type="text" />
+				<em id="rewardContentNull">请输入奖励内容</em>
+			</td>
+		</tr>
+		<tr>
+			<td class="activity_inf">奖品领取方式：</td>
+			<td colspan="2">
+				<input id="receivingWayName" name="receivingWayName" type="text" />
+				<em id="receivingWayNameNull">请输入领奖方式</em>
+			</td>
+		</tr>
+		<tr>
+			<td class="activity_inf">活动时间：</td>
+			<td colspan="2">
+				<input id="startTime" name="startTime" type="datetime-local" />
+				<em id="startTimeNull">请输入开始时间</em>
+				<span> - </span>
+				<input id="endTime" name="endTime" type="datetime-local" />
+				<em id="endTimeNull">请输入结束时间</em>
+			</td>
+		</tr>
+		<tr>
+			<td class="activity_inf">活动时间1：</td>
+			<td colspan="2">
+				<input type="datetime-local" step="01" name="user_date" />
+			</td>
+		</tr>
+		<tr>
+			<td class="activity_inf">消息发布者：&nbsp;</td>
+			<td colspan="2">
+				<input id="userName" name="userName" type="text"  value="" readonly="readonly"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="activity_inf">联系电话：&nbsp;</td>
+			<td colspan="2">
+				<input id="phoneNum" name="phoneNum" type="text" value=""/>
+			</td>
+		</tr>
+		<tr>
+			<td class="activity_inf">友情温馨提示：&nbsp;</td>
+			<td  class="activity_inf">
+				<span style="color: red;" >本着对个人负责的态度，请认真填写相关信息！</span>	
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<span>
+					<input id="sub" type="button" value="提交申请" onclick="sub()"/>
+				</span>
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+	</div>
+<script type="text/javascript">
+//根据用户id查询用户信息
+ var activityInitiateUserId =  $("#activityInitiateUserId").val();
+ /* $.ajax({
+	  type: 'POST',
+	  url: "http://localhost:8080/selUserById",
+	  data:{
+		  activityInitiateUserId:activityInitiateUserId
+		  },
+	  dataType:"json",
+	  success:function (data) {
+		var jsonObj = JSON.stringify(data);// 转成JSON格式
+		 var result = $.parseJSON(jsonObj);// 转成JSON对象
+		 console.log(result);
+		 
+	  }, 
+	  error:function () {
+     	window.alert("查询失败");
+   }
+	}); */
+</script>
+	
+</body>
+</html>

@@ -1,0 +1,115 @@
+ .black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 5%; 
+            left: 25%; 
+            width: 55%; 
+            height: 65%; 
+            padding: 20px; 
+            border: 10px solid; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
+    .main_msgbox
+    {
+        width:540px;
+        height:400px;
+        position:absolute;
+        left: 50%;
+        top: 50px;
+        margin-left: -270px!important;
+        margin-top: -10px!important;
+        background-color:#fafafa;
+        border:1px solid #7b7b7b;
+        -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;
+    }
+     .main_tit_msgbox
+    {
+        width:510px;
+        height:40px;
+        line-height:40px;
+        color:#303030;
+        font-size:14px;
+        padding-left:30px;
+        background-color:#ebebeb;
+        float:left;
+        -webkit-border-top-left-radius:5px;
+        -webkit-border-top-right-radius:5px;
+        -webkit-border-bottom-right-radius:0px;
+        -webkit-border-bottom-left-radius:0px;
+        -moz-border-radius-topleft:5px;
+        -moz-border-radius-topright:5px;
+        -moz-border-radius-bottomright:0px;
+        -moz-border-radius-bottomleft:0px;
+        border-top-left-radius:5px;
+        border-top-right-radius:5px;
+        border-bottom-right-radius:0px;
+        border-bottom-left-radius:0px;
+    }
+     .content_msgbox
+    {
+        width:500px;
+        height:250px;
+        float:left;
+        background-color:#f6f6f6;
+        padding:20px;
+    }
+    .left_msgbox
+    {
+        width:178px;
+        height:250px;
+        float:left;
+        border:1px solid #6b6b6b;
+        background-color:#fff;
+        overflow-y:auto; 
+    }
+    .middle_msgbox
+    {
+        width:140px;
+        height:250px;
+        float:left;
+    }
+    .right_msgbox
+    {
+        width:178px;
+        height:250px;
+        float:right;
+        border:1px solid #6b6b6b;
+        background-color:#fff;
+        overflow-y:auto;
+        overflow-x:hidden; 
+    }
+    .ax_html_button_msgbox
+    {
+        width:68px;
+        margin:20px auto 10px auto;
+        text-align:center;
+    }
+    .foot_msgbox
+    {
+        width:500px;
+        height:60px;
+        float:left;
+        padding:20px;
+        text-align:center;
+    }
+    .search_text
+{
+    width:110px;
+    height:22px;
+    float:left;
+}

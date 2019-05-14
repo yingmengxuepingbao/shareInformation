@@ -1,9 +1,12 @@
 package com.zyx.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.zyx.model.MsgPushUser;
 
 /**
  * <p>
@@ -16,6 +19,15 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/msgPushUser")
 public class MsgPushUserController {
-
+	
+	@RequestMapping(value = "/selUserById", method = RequestMethod.POST)
+	@ResponseBody
+	public MsgPushUser selUserById() {
+		
+		
+		return null;
+		
+	}
+	
 }
 

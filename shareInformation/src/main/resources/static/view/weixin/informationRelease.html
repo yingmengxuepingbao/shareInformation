@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <title>信息发布</title>
-	<!-- 样式 -->
-	<link href="../../css/informationRelease.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom-2.6.2.min.css">
 	<script src="../../js/jquery-1.12.3.min.js"></script>
 	 <script src="../../js/mobiscroll/mobiscroll.custom-2.6.2.min.js"></script>
 	<script src="../../js/weixin/informationRelease.js"></script>
+	<!-- 样式 -->
+	<link href="../../css/informationRelease.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../../css/mobiscroll/mobiscroll.custom-2.6.2.min.css">
+	
 </head>
 <body>
 	<!-- <div>信息发布</div> -->
 	<input type="hidden" id="activityInitiateUserId" value="1">
+	<input type="hidden" id="flage" value="1">
 	<div>
 	<table border="0" cellspacing="15" cellpadding="0" class="information">
 		<tr>
@@ -46,11 +48,12 @@
 		<tr>
 			<td class="activity_inf">活动时间：</td>
 			<td colspan="2">
-				<input id="startTime" name="startTime" type="text" onclick=""/>
+				<input id="startTime" name="startTime" type="text" onclick="getTime('startTime')"/>
 				<em id="startTimeNull">请选择开始时间</em>
 				<em id="startTimeErro">请选择正确的开始时间</em>
+				<em id="startTimeDa">请选择大于当前的时间</em>
 				<span> - </span>
-				<input id="endTime" name="endTime" type="text" />
+				<input id="endTime" name="endTime" type="text" onclick="getTime('endTime')"/>
 				<em id="startTimeNull">请选择结束时间</em>
 				<em id="endTimeErro">请选择正确的结束时间</em>
 			</td>
@@ -93,10 +96,18 @@
  var activityInitiateUserId =  $("#activityInitiateUserId").val();
 //根据用户id查询用户信息
  getUserById(activityInitiateUserId);
-//获取开始日期
-getTime("startTime");
-//获取结束日期
-getTime("endTime");
+ 
+ //进入页面执行一次
+ if($("#flage").val() == 1){
+	 alert("1");
+   //获取开始日期
+   	getTime("startTime");
+   //获取结束日期
+   	getTime("endTime");
+   //改变标识值
+   	$("#flage").val("2");
+ }
+
 </script>
 	
 </body>

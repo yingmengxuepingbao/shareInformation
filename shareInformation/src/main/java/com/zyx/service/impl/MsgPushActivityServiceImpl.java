@@ -33,4 +33,10 @@ public class MsgPushActivityServiceImpl extends ServiceImpl<MsgPushActivityMappe
 		return msgPushActivityMapper.selectActivityById(activityInitiateUserId);
 	}
 
+	@Override
+	public int addActivity(MsgPushActivity msgPushActivity) {
+		// TODO Auto-generated method stub
+		return msgPushActivityMapper.addActivity(msgPushActivity);
+	}
+
 }

@@ -53,5 +53,15 @@ isEnable：1 启用状态，start_time < new < end_time 截至时间大于现在
         	and DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s') &lt;  DATE_FORMAT(a.end_time,'%Y-%m-%d %h:%i:%s')
 	
 	 </select>
-
+	<!-- 信息发布：添加申请 -->
+	<insert id="addActivity">
+	  insert into msg_push_activity 
+	  (activity_id,activity_name,activity_initiate_user_id
+	  ,activity_rule_id,reward_content,reward_receive_method_id
+	  ,start_time,end_time,create_time,isEnable,isVerified)
+	  values 
+	  (null,#{activityName},#{activityInitiateUserId},#{activityRuleId}
+	  ,#{rewardContent},#{rewardReceiveMethodId},#{startTime},#{endTime}
+	  ,now(),'1','1')
+	</insert>
 </mapper>

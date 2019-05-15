@@ -61,7 +61,7 @@
 var activityInitiateUserId =$("#activityInitiateUserId").val();
 $.ajax({
 	  type: 'POST',
-	  url: "http://localhost:8080/selActivityByUserId",
+	  url: "http://localhost:8080/msgPushActivity/selActivityByUserId",
 	  data:{
 		  activityInitiateUserId:activityInitiateUserId
 		  },

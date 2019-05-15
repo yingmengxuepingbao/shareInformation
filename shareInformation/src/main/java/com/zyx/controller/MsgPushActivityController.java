@@ -1,7 +1,6 @@
 package com.zyx.controller;
 
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ import com.zyx.service.MsgPushActivityService;
  * @since 2019-05-05
  */
 @Controller
-//@RequestMapping("/msgPushActivity")
+@RequestMapping("/msgPushActivity")
 public class MsgPushActivityController {
 	
 	@Autowired
@@ -42,6 +41,32 @@ public class MsgPushActivityController {
 		System.out.println("activityInitiateUserId="+activityInitiateUserId);
 		List<MsgPushActivity> list = msgPushActivityService.selectActivityById(activityInitiateUserId);
 		return list;
+	}
+	/*
+	 * 信息发布：添加申请
+	 */
+	@RequestMapping(value = "/addActivity", method = RequestMethod.POST)
+	@ResponseBody
+	public String addActivity(HttpServletRequest request,HttpServletResponse response){
+		MsgPushActivity msgPushActivity = new MsgPushActivity();
+		msgPushActivity.setActivityName(request.getParameter("activityName"));
+		msgPushActivity.setActivityInitiateUserId(request.getParameter("activityInitiateUserId"));
+		msgPushActivity.setActivityRuleName(request.getParameter("activityRuleName")); 
+		msgPushActivity.setRewardContent(request.getParameter("rewardContent")); 
+		msgPushActivity.setReceivingWayName(request.getParameter("receivingWayName")); 
+		msgPushActivity.setStartTime(request.getParameter("startTime")); 
+		msgPushActivity.setEndTime(request.getParameter("endTime"));
+		//String userName =request.getParameter("userName");
+		//String phoneNum =request.getParameter("phoneNum");
+		
+		System.out.println("msgPushActivity = "+msgPushActivity);
+		int flag = msgPushActivityService.addActivity(msgPushActivity);
+		if(flag>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
 	}
 }
 

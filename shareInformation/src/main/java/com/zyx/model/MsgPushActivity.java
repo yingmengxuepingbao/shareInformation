@@ -1,7 +1,6 @@
 package com.zyx.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import org.springframework.stereotype.Component;
 

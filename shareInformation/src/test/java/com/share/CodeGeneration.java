@@ -28,7 +28,7 @@ public class CodeGeneration {
  
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("D://"); //输出文件路径 D://STS_workspace//shareInformation//shareInformation//src//test//java//com//share//
+        gc.setOutputDir("D://zx"); //输出文件路径 D://STS_workspace//shareInformation//shareInformation//src//test//java//com//share//
         gc.setFileOverride(true);
         gc.setActiveRecord(false);// 不需要ActiveRecord特性的请改为false
         gc.setEnableCache(false);// XML 二级缓存
@@ -60,25 +60,18 @@ public class CodeGeneration {
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
         strategy.setInclude(new String[] { 
         		"msg_push_activity"
-        		,"msg_push_activity_extend_way"
-        		,"msg_push_activity_extend_way_record"
-        		,"msg_push_activity_extend_way_veritify_record"
-        		,"msg_push_activity_rule"
-        		,"msg_push_extend_way" 
-        		,"msg_push_membership_level" 
-        		,"msg_push_membership_level_msgcount_relationship"
-        		,"msg_push_product_base"
-        		,"msg_push_product_extend"
-        		,"msg_push_recharge_record"
-        		,"msg_push_resource" 
-        		,"msg_push_reward_user"
-        		,"msg_push_role"
-        		,"msg_push_role_resource_relationship"
-        		,"msg_push_user"
-        		,"msg_push_user_membership_relationship"
-        		,"msg_push_user_role_relationship"
-        		,"msg_push_user_wx_relationship"
-        		,"msg_push_verified_record"}); // 需要生成的表
+				/*
+				 * ,"msg_push_activity_extend_way" ,"msg_push_activity_extend_way_record"
+				 * ,"msg_push_activity_extend_way_veritify_record" ,"msg_push_activity_rule"
+				 * ,"msg_push_extend_way" ,"msg_push_membership_level"
+				 * ,"msg_push_membership_level_msgcount_relationship" ,"msg_push_product_base"
+				 * ,"msg_push_product_extend" ,"msg_push_recharge_record" ,"msg_push_resource"
+				 * ,"msg_push_reward_user" ,"msg_push_role"
+				 * ,"msg_push_role_resource_relationship" ,"msg_push_user"
+				 * ,"msg_push_user_membership_relationship" ,"msg_push_user_role_relationship"
+				 * ,"msg_push_user_wx_relationship" ,"msg_push_verified_record"
+				 */
+        		}); // 需要生成的表
  
         strategy.setSuperServiceClass(null);
         strategy.setSuperServiceImplClass(null);

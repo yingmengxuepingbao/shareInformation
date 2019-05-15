@@ -3,7 +3,8 @@ function getTime(idSign) {
 	var currYear = (new Date()).getFullYear(); // 获取年
 	var currMonth = (new Date()).getMonth()+1; // 获取月
 	var currDay = (new Date()).getDate(); // 获取日
-	$('#'+idSign+'').mobiscroll().datetime({
+	var nowDay = currYear+"-"+currMonth+"-"+currDay;
+	$('#'+idSign+'').mobiscroll().date({//datetime
 	    theme: "android-ics light", //显示样式
 	    lang: 'zh',
 	    mode: 'scroller',
@@ -12,7 +13,7 @@ function getTime(idSign) {
 	    display: 'modal', //显示方式  'bottom',
 	    preset : 'datetime', //日期:年 月 日 时 分
 	    timeFormat: 'HH:ii:ss',
-	    dateFormat: 'yyyy-mm-dd',
+	    dateFormat: 'yyyy-mm-dd', //返回结果格式化为年月格式  
 	    timeOrder: 'HHiiss',
 	    timeWheels: 'HHiiss',
 	   // startDay: currDay,
@@ -27,12 +28,6 @@ function getTime(idSign) {
  	            if(val < starttime){//如果结束时间小于开始时间
  	                $('#endTime').val('');//结束时间为空
  	                $("#endTimeErro").attr("style", "display: block;");//给出提示
- 	                api.toast({
- 	                    msg: '结束时间不能早于开始时间',
- 	                    duration: 2000,
- 	                    location: 'bottom'
- 	                });
- 	
  	            }else{
  	            	$("#endTimeErro").attr("style", "display: none;");//正确隐藏提示
  	            }
@@ -40,19 +35,19 @@ function getTime(idSign) {
 	        }
 	        if(idSign == "startTime"){//开始时间
 	        	 if($('#'+idSign+'').val() != ''){//开始时间不为空
-	        		 var nowTime = new Date().getTime();
-	        		 if(val > nowTime){//开始时间大于当前时间
+	        		 var now = new Date(nowDay).getTime();
+	        		 if(val >= now){//开始时间大于当前时间
 	        			var endTime = new Date($("#endTime").val()).getTime();//获取结束时间
 	 	  	            if(endTime!=''&&endTime!=null){//结束时间不为空
 	 		  	            if(val > endTime){//如果开始时间大于结束时间
 	 		  	                $('#startTime').val('');//结束时间为空
+	 		  	                $("#startTimeDa").attr("style", "display: none;");//隐藏时间大小
 	 		  	                $("#startTimeErro").attr("style", "display: block;");//给出提示
-	 		  	                api.toast({
+	 		  	               /* api.toast({
 	 		  	                    msg: '结束时间不能早于开始时间',
 	 		  	                    duration: 2000,
 	 		  	                    location: 'bottom'
-	 		  	                });
-	 		  	
+	 		  	                });*/
 	 		  	            }else{
 	 		  	            	$("#startTimeErro").attr("style", "display: none;");//正确隐藏提示
 	 		  	            	$("#startTimeDa").attr("style", "display: none;");//正确隐藏提示

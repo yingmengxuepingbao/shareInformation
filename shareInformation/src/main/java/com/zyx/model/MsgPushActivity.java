@@ -92,6 +92,11 @@ public class MsgPushActivity implements Serializable {
     //信息发布者
     private String userName;
     
+    //活动规则表
+    private MsgPushActivityRule  msgPushActivityRule;
+    //奖励领取方式表
+    private MsgPushAwardReceivingWay msgPushAwardReceivingWay;
+    
     public String getActivityId() {
         return activityId;
     }
@@ -220,6 +225,22 @@ public class MsgPushActivity implements Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	
+	public MsgPushActivityRule getMsgPushActivityRule() {
+		return msgPushActivityRule;
+	}
+
+	public void setMsgPushActivityRule(MsgPushActivityRule msgPushActivityRule) {
+		this.msgPushActivityRule = msgPushActivityRule;
+	}
+
+	public MsgPushAwardReceivingWay getMsgPushAwardReceivingWay() {
+		return msgPushAwardReceivingWay;
+	}
+
+	public void setMsgPushAwardReceivingWay(MsgPushAwardReceivingWay msgPushAwardReceivingWay) {
+		this.msgPushAwardReceivingWay = msgPushAwardReceivingWay;
 	}
 
 	@Override

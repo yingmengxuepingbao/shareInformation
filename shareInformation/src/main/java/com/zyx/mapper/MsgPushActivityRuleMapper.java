@@ -17,4 +17,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 @Mapper
 public interface MsgPushActivityRuleMapper extends BaseMapper<MsgPushActivityRule> {
 
+	/*
+	 * 添加活动规则
+	 */
+	public int addRule(MsgPushActivityRule msgPushActivityRule);
 }

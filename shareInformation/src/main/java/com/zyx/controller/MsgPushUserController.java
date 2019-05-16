@@ -34,7 +34,6 @@ public class MsgPushUserController {
 		String userId =request.getParameter("activityInitiateUserId");
 		//查询用户信息
 		MsgPushUser msgPushUser =msgPushUserService.selectById(userId);
-		System.out.println(msgPushUser.getUserName());
 		return msgPushUser;
 		
 	}

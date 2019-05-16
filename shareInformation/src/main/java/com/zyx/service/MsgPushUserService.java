@@ -26,7 +26,7 @@ public interface MsgPushUserService extends IService<MsgPushUser> {
 	public MsgPushUser queryUserByName(String userName);
 	
 	/*
-	 * 根据用户名查询用户
+	 * 根据用户ID查询用户
 	 */
 	public MsgPushUser selectById(String userId);
 

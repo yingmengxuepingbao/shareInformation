@@ -29,7 +29,6 @@ public class MsgPushUserServiceImpl extends ServiceImpl<MsgPushUserMapper, MsgPu
 	 */
 	@Override
 	public MsgPushUser queryUserByMap(Map<String,Object> map) {
-		System.out.println("进service了");
 		return msgPushUserMapper.queryUserByMap(map);
 	}
 
@@ -41,10 +40,11 @@ public class MsgPushUserServiceImpl extends ServiceImpl<MsgPushUserMapper, MsgPu
 		// TODO Auto-generated method stub
 		return msgPushUserMapper.queryUserByName(userName);
 	}
-
+	/*
+	 * 根据用户ID查询用户
+	 */
 	@Override
 	public MsgPushUser selectById(String userId) {
-		System.out.println("进service了，userId= "+userId);
 		return msgPushUserMapper.selectById(userId);
 	}
 

@@ -16,6 +16,11 @@ import com.zyx.model.MsgPushActivity;
 public interface MsgPushActivityService extends IService<MsgPushActivity> {
 
 	/*
+	 * 获取UUID
+	 */
+	public String getUUID();
+	
+	/*
 	 * 我的发布：根据用户编号user_id（msg_push_user）即activity_initiate_user_id（msg_push_activity）查询数据
 	 */
 	public 	List<MsgPushActivity> selectActivityById(String activityInitiateUserId) ;

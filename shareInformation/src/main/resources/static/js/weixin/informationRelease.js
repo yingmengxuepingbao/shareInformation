@@ -142,16 +142,16 @@ function sub(){
 	if(phoneNum ==''||phoneNum==null||phoneNum=="undefined"){
 		$("#phoneNumNull").attr("style", "display: block;");
 		return false;
-	}else{//校验手机号码是否正确
+	}
+	/*else{//校验手机号码是否正确
 		var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
         if (!myreg.test($("#phoneNum").val())) {
         	$("#phoneNumNull").attr("style", "display: block;");
             return false;
         } else {
         	$("#phoneNumNull").attr("style", "display: none;");
-            return true;
         }
-	}
+	}*/
 	 $.ajax({
 		  type: 'POST',
 		  url: "http://localhost:8080/msgPushActivity/addActivity",
@@ -171,6 +171,7 @@ function sub(){
 			 /*var jsonObj = JSON.stringify(data);// 转成JSON格式
 			 var result = $.parseJSON(jsonObj);// 转成JSON对象
 			 console.log(result);*/
+			  alert("进来了");
 			  if(data.result=="success"){
 				  window.location.href ="http://localhost:8080/view/weixin/myPublish.html"; 
 			  }else{

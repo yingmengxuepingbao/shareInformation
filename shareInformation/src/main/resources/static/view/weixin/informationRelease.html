@@ -14,7 +14,6 @@
 <body>
 	<!-- <div>信息发布</div> -->
 	<input type="hidden" id="activityInitiateUserId" value="1">
-	<input type="hidden" id="flage" value="1">
 	<div>
 	<table border="0" cellspacing="15" cellpadding="0" class="information">
 		<tr>
@@ -96,17 +95,10 @@
  var activityInitiateUserId =  $("#activityInitiateUserId").val();
 //根据用户id查询用户信息
  getUserById(activityInitiateUserId);
- 
- //进入页面执行一次
- if($("#flage").val() == 1){
-   //获取开始日期
-   	getTime("startTime");
-   //获取结束日期
-   	getTime("endTime");
-   //改变标识值
-   	$("#flage").val("2");
- }
-
+//获取开始日期
+	getTime("startTime");
+//获取结束日期
+	getTime("endTime");
 </script>
 	
 </body>

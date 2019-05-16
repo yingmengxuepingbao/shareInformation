@@ -56,9 +56,12 @@ public class MsgPushActivityServiceImpl extends ServiceImpl<MsgPushActivityMappe
 		System.out.println("msgPushActivity:"+msgPushActivity);
 		System.out.println("MsgPushActivityRule:"+msgPushActivity.getMsgPushActivityRule());
 		System.out.println("MsgPushAwardReceivingWay:"+msgPushActivity.getMsgPushAwardReceivingWay());
+		
 		int  rule= msgPushActivityRuleMapper.addRule(msgPushActivity.getMsgPushActivityRule());
 		int  way= msgPushAwardReceivingWayMapper.addWay(msgPushActivity.getMsgPushAwardReceivingWay());
 		int  act =msgPushActivityMapper.addActivity(msgPushActivity);
+		
+		System.out.println("是否成功："+rule+"-"+way+"-"+act);
 		if(rule > 0 && way > 0 &&act>0) { //如果添加成功返回act 否则返回0
 			return  act;
 		}

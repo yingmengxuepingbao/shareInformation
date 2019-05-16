@@ -53,6 +53,7 @@ isEnable：1 启用状态，start_time < new < end_time 截至时间大于现在
         	and a.reward_receive_method_id = w.receiving_way_id
         	and a.activity_initiate_user_id=#{activityInitiateUserId,jdbcType=VARCHAR} 
         	and a.isEnable=1
+        	and a.isVerified=0
         	and DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s') &gt;  DATE_FORMAT(a.start_time,'%Y-%m-%d %h:%i:%s')
         	and DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s') &lt;  DATE_FORMAT(a.end_time,'%Y-%m-%d %h:%i:%s')
 	

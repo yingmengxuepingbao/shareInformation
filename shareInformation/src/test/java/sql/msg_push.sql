@@ -28,10 +28,10 @@ DROP TABLE IF EXISTS `msg_push_activity`;
 CREATE TABLE `msg_push_activity`  (
   `activity_id`  char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL  COMMENT '活动编号',
   `activity_name` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动名称',
-  `activity_initiate_user_id` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动发起人',
-  `activity_rule_id` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动规则编号',
+  `activity_initiate_user_id` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动发起人',
+  `activity_rule_id` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动规则编号',
   `reward_content` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '奖励内容',
-  `reward_receive_method_id` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '奖励领取方式编号',
+  `reward_receive_method_id` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '奖励领取方式编号',
   `start_time` datetime(0) NULL DEFAULT NULL COMMENT '活动起始时间',
   `end_time` datetime(0) NULL DEFAULT NULL COMMENT '活动截止时间',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
@@ -340,9 +340,9 @@ INSERT INTO `msg_push_role` VALUES ('1', 'administrators', '1', '2019-5-12 22:26
 INSERT INTO `msg_push_role` VALUES ('2', 'ordinaryMember', '2', '2019-5-12 22:28:05', '2019-5-25 22:28:08');
 
 truncate table msg_push_activity;
-INSERT INTO `msg_push_activity` VALUES ('1', '张艺馨卖樱桃1', '1','1', '一斤樱桃','1','2019-5-12 22:28:05', '2019-5-25 22:28:08','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','1');
-INSERT INTO `msg_push_activity` VALUES ('2', '张艺馨卖樱桃2', '1','1', '10元代金券','1','2019-5-12 22:28:05', '2019-5-25 22:28:08','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','1');
-INSERT INTO `msg_push_activity` VALUES ('3', '张艺馨卖樱桃3', '1','1', '5元代金券','1','2019-5-12 22:28:05', '2019-5-25 22:28:08','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','1');
+INSERT INTO `msg_push_activity` VALUES ('1', '张艺馨卖樱桃1', '1','1', '一斤樱桃','1','2019-5-12 22:28:05', '2019-5-25 22:28:08','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');
+INSERT INTO `msg_push_activity` VALUES ('2', '张艺馨卖樱桃2', '1','1', '10元代金券','1','2019-5-12 22:28:05', '2019-5-25 22:28:08','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');
+INSERT INTO `msg_push_activity` VALUES ('3', '张艺馨卖樱桃3', '1','1', '5元代金券','1','2019-5-12 22:28:05', '2019-5-25 22:28:08','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');
  
 
 INSERT INTO `msg_push_activity_rule` VALUES('1','转发消息送樱桃','1','1','2019-5-12 22:28:05','2019-5-25 22:28:10','1');

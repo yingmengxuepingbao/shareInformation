@@ -12,5 +12,14 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
-
+	<sql id="Base_Column_List">
+	receiving_way_id,receiving_way_name,create_user_id,start_time,end_time,create_time,update_time
+	</sql>
+	
+	<insert id="addWay">
+	INSERT INTO msg_push_award_receiving_way
+	(receiving_way_id,receiving_way_name,create_user_id,start_time,end_time,create_time,update_time)
+	VALUES
+	(#{receivingWayId},#{receivingWayName},#{createUserId},#{startTime},#{endTime},now(),#{updateTime})
+	</insert>
 </mapper>

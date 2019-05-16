@@ -38,12 +38,12 @@ public class MsgPushAwardReceivingWay implements Serializable {
      * 有效起始时间
      */
     @TableField("start_time")
-    private Date startTime;
+    private String startTime;
     /**
      * 有效截止时间
      */
     @TableField("end_time")
-    private Date endTime;
+    private String endTime;
     /**
      * 创建日期
      */
@@ -80,23 +80,23 @@ public class MsgPushAwardReceivingWay implements Serializable {
         this.createUserId = createUserId;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
+    public String getStartTime() {
+		return startTime;
+	}
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
 
-    public Date getEndTime() {
-        return endTime;
-    }
+	public String getEndTime() {
+		return endTime;
+	}
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
 
-    public Date getCreateTime() {
+	public Date getCreateTime() {
         return createTime;
     }
 

@@ -1,7 +1,9 @@
 package com.zyx.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +49,7 @@ public class MsgPushActivityController {
 	 */
 	@RequestMapping(value = "/addActivity", method = RequestMethod.POST)
 	@ResponseBody
-	public String addActivity(HttpServletRequest request,HttpServletResponse response){
+	public Map<String,Object> addActivity(HttpServletRequest request,HttpServletResponse response){
 		String UUID = msgPushActivityService.getUUID() ;
 		System.out.println(UUID);
 		MsgPushActivity msgPushActivity = new MsgPushActivity();//活动表
@@ -63,6 +65,8 @@ public class MsgPushActivityController {
 		msgPushAwardReceivingWay.setReceivingWayId(UUID);//奖励领取方式编号
 		msgPushAwardReceivingWay.setReceivingWayName(request.getParameter("receivingWayName"));//奖励发放方式
 		msgPushAwardReceivingWay.setCreateUserId(request.getParameter("activityInitiateUserId"));//创建人ID
+		msgPushAwardReceivingWay.setStartTime(request.getParameter("startTime"));//有效起始时间
+		msgPushAwardReceivingWay.setEndTime(request.getParameter("endTime"));//有效截止时间
 		//活动表的相关信息
 		msgPushActivity.setActivityId(UUID);//活动编号
 		msgPushActivity.setActivityName(request.getParameter("activityName"));//活动名称
@@ -79,12 +83,13 @@ public class MsgPushActivityController {
 		System.out.println("msgPushActivityRule = "+msgPushActivityRule);
 		//添加信息
 		int flag = msgPushActivityService.addActivity(msgPushActivity);
+		System.out.println("flag = "+flag);
 		
+		Map<String,Object> returnMap =new HashMap<String,Object>();
 		if(flag>0) {
-			return "success";
-		}else {
-			return "fail";
+			returnMap.put("result", "sussess");
 		}
+		return returnMap;
 		
 	}
 }

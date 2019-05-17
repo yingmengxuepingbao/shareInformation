@@ -112,15 +112,6 @@ public class MsgPushActivityController {
 		//如果不是管理员，查询自己的待审核列表
 		//如果是管理员身份，查询待审核列表
 		List<MsgPushActivity> list = msgPushActivityService.getToauditedActivitList();
-		for(MsgPushActivity msgPushActivity:list) {
-			System.out.println("申请时间："+msgPushActivity.getCreateTime());
-			System.out.println("活动名称："+msgPushActivity.getActivityName());
-			System.out.println("活动规则："+msgPushActivity.getActivityRuleName());
-			System.out.println("奖品领取方式："+msgPushActivity.getReceivingWayName());
-			System.out.println("信息发布者："+msgPushActivity.getUserName());
-			System.out.println("活动时间："+msgPushActivity.getStartTime() +"-"+msgPushActivity.getEndTime());
-			System.out.println("联系电话："+msgPushActivity.getPhoneNum());
-		}
 		return list;
 	}
 }

@@ -11,7 +11,6 @@ $(function(){
 			  },
 		  dataType:"json",
 		  success:function (data) {
-			  alert("进来了");
 			var jsonObj = JSON.stringify(data);// 转成JSON格式
 			 var result = $.parseJSON(jsonObj);// 转成JSON对象
 			 console.log(result);

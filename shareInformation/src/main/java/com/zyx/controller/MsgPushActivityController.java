@@ -33,6 +33,16 @@ public class MsgPushActivityController {
 	
 	@Autowired
 	private MsgPushActivityService msgPushActivityService;
+	
+	/*
+	 * 消息推送列表
+	 */
+	@RequestMapping(value = "/getActivitList", method = RequestMethod.POST)
+	@ResponseBody
+	public List<MsgPushActivity> getActivitList(){
+		List<MsgPushActivity> list =msgPushActivityService.getActivitList(0);//isVerified是否完成审核 0:审核通过，1：审核中，2：审核通过
+		return list;
+	}
 
 	/*
 	 * 我的发布：根据用户编号user_id（msg_push_user）即activity_initiate_user_id（msg_push_activity）查询数据
@@ -90,7 +100,28 @@ public class MsgPushActivityController {
 			returnMap.put("result", "sussess");
 		}
 		return returnMap;
-		
+	}
+	/*
+	 * 获取待审核信息列表
+	 *  根据openid获取微信信息，根据个人信息查询权限表；
+	 *  如果是管理员，查询待审批数据；若普通会员，无权限审批。
+	 */
+	@RequestMapping(value = "/getActAuditList", method = RequestMethod.POST)
+	@ResponseBody
+	public List<MsgPushActivity> getActAuditList(HttpServletRequest request,HttpServletResponse response){
+		//如果不是管理员，查询自己的待审核列表
+		//如果是管理员身份，查询待审核列表
+		List<MsgPushActivity> list = msgPushActivityService.getToauditedActivitList();
+		for(MsgPushActivity msgPushActivity:list) {
+			System.out.println("申请时间："+msgPushActivity.getCreateTime());
+			System.out.println("活动名称："+msgPushActivity.getActivityName());
+			System.out.println("活动规则："+msgPushActivity.getActivityRuleName());
+			System.out.println("奖品领取方式："+msgPushActivity.getReceivingWayName());
+			System.out.println("信息发布者："+msgPushActivity.getUserName());
+			System.out.println("活动时间："+msgPushActivity.getStartTime() +"-"+msgPushActivity.getEndTime());
+			System.out.println("联系电话："+msgPushActivity.getPhoneNum());
+		}
+		return list;
 	}
 }
 

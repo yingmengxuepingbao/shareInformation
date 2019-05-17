@@ -67,6 +67,21 @@ public class MsgPushActivityServiceImpl extends ServiceImpl<MsgPushActivityMappe
 		}
 		return 0;
 	}
+	/*
+	  * 获取活动列表 isVerified 是否完成审核 0:审核通过，1：审核中，2：审核通过
+	 */
+	@Override
+	public List<MsgPushActivity> getActivitList(Integer isVerified) {
+		return msgPushActivityMapper.getActivitList(isVerified);
+	}
+
+	/*
+	  * 管理员身份，获取待审核活动列表
+	 */
+	@Override
+	public List<MsgPushActivity> getToauditedActivitList() {
+		return msgPushActivityMapper.getToauditedActivitList();
+	}
 
 
 

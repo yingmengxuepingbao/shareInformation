@@ -91,6 +91,8 @@ public class MsgPushActivity implements Serializable {
     private String receivingWayName;
     //信息发布者
     private String userName;
+    //信息发布者手机号
+    private String phoneNum;
     
     //活动规则表
     private MsgPushActivityRule  msgPushActivityRule;
@@ -227,6 +229,15 @@ public class MsgPushActivity implements Serializable {
 		this.userName = userName;
 	}
 	
+	
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
 	public MsgPushActivityRule getMsgPushActivityRule() {
 		return msgPushActivityRule;
 	}
@@ -262,6 +273,7 @@ public class MsgPushActivity implements Serializable {
         ", activityRuleName=" + activityRuleName +
         ", receivingWayName=" + receivingWayName +
         ", userName=" + userName +
+        ", phoneNum=" + phoneNum +
         "}";
     }
 }

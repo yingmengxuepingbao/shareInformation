@@ -32,4 +32,13 @@ public interface MsgPushActivityMapper extends BaseMapper<MsgPushActivity> {
 	 * 信息发布：添加申请
 	 */
 	public int addActivity(MsgPushActivity msgPushActivity);
+	
+	/*
+	  * 获取活动列表 isVerified 是否完成审核 0:审核通过，1：审核中，2：审核通过
+	 */
+	public List<MsgPushActivity> getActivitList(Integer isVerified);
+	/*
+	  * 管理员身份，获取待审核活动列表
+	 */
+	public List<MsgPushActivity> getToauditedActivitList();
 }

@@ -171,8 +171,8 @@ function sub(){
 			 /*var jsonObj = JSON.stringify(data);// 转成JSON格式
 			 var result = $.parseJSON(jsonObj);// 转成JSON对象
 			 console.log(result);*/
-			  if(data.result=="sussess"){
-				  window.location.href ="http://localhost:8080/view/weixin/myPublish.html"; 
+			  if(data.result=="sussess"){//成功后返回信息推送列表
+				  window.location.href ="http://localhost:8080/view/weixin/informationPublishList.html"; 
 			  }else{
 				  alert("添加失败");
 			  }

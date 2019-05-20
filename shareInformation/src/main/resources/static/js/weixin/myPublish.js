@@ -82,21 +82,5 @@ function del(){
 //查看详情 
 function particulars(activityId){
 	//跳转详情页
-	
-	/*$.ajax({
-		  type: 'POST',
-		  url: "http://localhost:8080/msgPushActivity/getActById",
-		  data:{
-			  activityId:activityId
-			  },
-		  dataType:"json",
-		  success:function (data) {
-			var jsonObj = JSON.stringify(data);// 转成JSON格式
-			 var result = $.parseJSON(jsonObj);// 转成JSON对象
-			 console.log(result);
-		  }, 
-		  error:function () {
-	      	window.alert("查询失败");
-	    }
-		});*/
+	 window.location.href='viewDetails.html';
 }

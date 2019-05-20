@@ -35,7 +35,7 @@ public class MsgPushActivityController {
 	private MsgPushActivityService msgPushActivityService;
 	
 	/*
-	 * 消息推送列表
+	 * 推广信息列表-主页：查询所有活动信息
 	 */
 	@RequestMapping(value = "/getActivitList", method = RequestMethod.POST)
 	@ResponseBody
@@ -47,11 +47,11 @@ public class MsgPushActivityController {
 	/*
 	 * 我的发布：根据用户编号user_id（msg_push_user）即activity_initiate_user_id（msg_push_activity）查询数据
 	 */
-	@RequestMapping(value = "/selActivityByUserId", method = RequestMethod.POST)
+	@RequestMapping(value = "/selActAllById", method = RequestMethod.POST)
 	@ResponseBody
 	public List<MsgPushActivity> selActivityByUserId(HttpServletRequest request,HttpServletResponse response){
 		String activityInitiateUserId =request.getParameter("activityInitiateUserId");
-		List<MsgPushActivity> list = msgPushActivityService.selectActivityById(activityInitiateUserId);
+		List<MsgPushActivity> list = msgPushActivityService.selActAllById(activityInitiateUserId);
 		return list;
 	}
 	/*
@@ -88,12 +88,8 @@ public class MsgPushActivityController {
 		msgPushActivity.setEndTime(request.getParameter("endTime"));//活动截止时间
 		msgPushActivity.setMsgPushActivityRule(msgPushActivityRule);//活动规则表的相关信息
 		msgPushActivity.setMsgPushAwardReceivingWay(msgPushAwardReceivingWay);//奖励领取方式表
-		
-		System.out.println("msgPushActivity = "+msgPushActivity);
-		System.out.println("msgPushActivityRule = "+msgPushActivityRule);
 		//添加信息
 		int flag = msgPushActivityService.addActivity(msgPushActivity);
-		System.out.println("flag = "+flag);
 		
 		Map<String,Object> returnMap =new HashMap<String,Object>();
 		if(flag>0) {
@@ -112,6 +108,21 @@ public class MsgPushActivityController {
 		//如果不是管理员，查询自己的待审核列表
 		//如果是管理员身份，查询待审核列表
 		List<MsgPushActivity> list = msgPushActivityService.getToauditedActivitList();
+		return list;
+	}
+	
+	/*
+	 *根据活动id修改活动状态 
+	 */
+	@RequestMapping(value = "/updataIsVerByID", method = RequestMethod.POST)
+	@ResponseBody
+	public List<MsgPushActivity> updataIsVerByID(HttpServletRequest request,HttpServletResponse response){
+		MsgPushActivity msgPushActivity =new MsgPushActivity();
+		msgPushActivity.setActivityId(request.getParameter("activityId"));
+		msgPushActivity.setIsVerified(Integer.valueOf(request.getParameter("isVerified")));
+		msgPushActivity.setUpdateUserId(request.getParameter("updateUserId"));
+		//根据id修改MsgPushActivity活动表，并查询待审批列表
+		List<MsgPushActivity> list = msgPushActivityService.modifyAndQuery(msgPushActivity);
 		return list;
 	}
 }

@@ -38,7 +38,7 @@ CREATE TABLE `msg_push_activity`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新日期',
   `update_user_id` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
   `isEnable` tinyint(1) NULL DEFAULT NULL COMMENT '是否禁用 0：禁用，1：启用',
-  `isVerified` tinyint(1) NULL DEFAULT NULL COMMENT '是否完成审核 0:审核通过，1：审核中，2：审核通过',
+  `isVerified` tinyint(1) NULL DEFAULT NULL COMMENT '是否完成审核 0:审核通过，1：审核中，2：审核不通过',
   PRIMARY KEY (`activity_id`)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '活动表' ROW_FORMAT = Compact;
 

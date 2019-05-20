@@ -32,16 +32,39 @@
 	<select id="getUUID" resultType="String">
 		SELECT UUID() ;
 	</select>
-
+<!-- 获取活动列表 时间状态正常  isVerified,jdbcType=NUMERIC-->
+	<select id="getActivitList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	select 
+	 		a.activity_id,a.activity_name,a.activity_initiate_user_id
+	 		,a.activity_rule_id,a.reward_content,a.reward_receive_method_id
+		 	,DATE_FORMAT(a.start_time,'%Y-%m-%d') start_time 
+		 	,DATE_FORMAT(a.end_time,'%Y-%m-%d') end_time
+		 	,DATE_FORMAT(a.create_time,'%Y-%m-%d') create_time
+			,a.isEnable,a.isVerified
+			,r.activity_rule_name activityRuleName
+			,u.user_name userName
+			,w.receiving_way_name receivingWayName
+        from 
+        	msg_push_activity a,msg_push_activity_rule r, 
+        	msg_push_user u,msg_push_award_receiving_way w
+        where 
+        	a.activity_rule_id = r.activity_rule_id
+        	and a.activity_initiate_user_id = u.user_id
+        	and a.reward_receive_method_id = w.receiving_way_id
+        	and a.isEnable=1
+        	and a.isVerified=#{isVerified,jdbcType=VARCHAR}
+        	and DATE_FORMAT(NOW(),'%Y-%m-%d') &lt;  DATE_FORMAT(a.end_time,'%Y-%m-%d')
+	</select>
 <!-- 我的发布：根据用户编号user_id（msg_push_user）即activity_initiate_user_id（msg_push_activity）查询数据
 isEnable：1 启用状态，isVerified:0审核通过，1：审核中，2：审核不通过，start_time < new < end_time 截至时间大于现在时间     大于&gt;   小于&lt; 
 DATE_FORMAT(a.end_time,'%Y-%m-%d %H:%i:%s') end_time-->
-	<select id="selectActivityById"  parameterType="String" resultMap="BaseResultMap">
+	<select id="selActAllById"  parameterType="String" resultMap="BaseResultMap">
 	 	select 
 	 		a.activity_id,a.activity_name,a.activity_initiate_user_id
 	 		,a.activity_rule_id,a.reward_content,a.reward_receive_method_id
 		 	,DATE_FORMAT(a.start_time,'%Y-%m-%d') start_time 
 		 	,DATE_FORMAT(a.end_time,'%Y-%m-%d') end_time
+		 	,DATE_FORMAT(a.create_time,'%Y-%m-%d') create_time
 			,a.isEnable,a.isVerified
 			,r.activity_rule_name activityRuleName
 			,u.user_name userName
@@ -56,8 +79,8 @@ DATE_FORMAT(a.end_time,'%Y-%m-%d %H:%i:%s') end_time-->
         	and a.activity_initiate_user_id=#{activityInitiateUserId,jdbcType=VARCHAR} 
         	and a.isEnable=1
         	and a.isVerified=0
-        	and DATE_FORMAT(NOW(),'%Y-%m-%d') &gt;  DATE_FORMAT(a.start_time,'%Y-%m-%d')
-        	and DATE_FORMAT(NOW(),'%Y-%m-%d') &lt;  DATE_FORMAT(a.end_time,'%Y-%m-%d')
+        	<!-- and DATE_FORMAT(NOW(),'%Y-%m-%d') &gt;  DATE_FORMAT(a.start_time,'%Y-%m-%d')
+        	and DATE_FORMAT(NOW(),'%Y-%m-%d') &lt;  DATE_FORMAT(a.end_time,'%Y-%m-%d') -->
 	
 	 </select>
 	<!-- 信息发布：添加申请 isEnable：1启用，isVerified：1审核中 -->
@@ -94,29 +117,46 @@ DATE_FORMAT(a.end_time,'%Y-%m-%d %H:%i:%s') end_time-->
         	and a.isEnable=1
         	and a.isVerified=1
 	</select>
-	<!-- 获取活动列表  isVerified,jdbcType=NUMERIC-->
-	<select id="getActivitList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-	select 
-	 		a.activity_id,a.activity_name,a.activity_initiate_user_id
-	 		,a.activity_rule_id,a.reward_content,a.reward_receive_method_id
-		 	,DATE_FORMAT(a.start_time,'%Y-%m-%d') start_time 
-		 	,DATE_FORMAT(a.end_time,'%Y-%m-%d') end_time
-		 	,DATE_FORMAT(a.create_time,'%Y-%m-%d') create_time
-			,a.isEnable,a.isVerified
-			,r.activity_rule_name activityRuleName
-			,u.user_name userName
-			,w.receiving_way_name receivingWayName
-        from 
-        	msg_push_activity a,msg_push_activity_rule r, 
-        	msg_push_user u,msg_push_award_receiving_way w
-        where 
-        	a.activity_rule_id = r.activity_rule_id
-        	and a.activity_initiate_user_id = u.user_id
-        	and a.reward_receive_method_id = w.receiving_way_id
-        	and a.isEnable=1
-        	and a.isVerified=#{isVerified,jdbcType=VARCHAR}
-        	and DATE_FORMAT(NOW(),'%Y-%m-%d') &gt;  DATE_FORMAT(a.start_time,'%Y-%m-%d')
-        	and DATE_FORMAT(NOW(),'%Y-%m-%d') &lt;  DATE_FORMAT(a.end_time,'%Y-%m-%d')
 	
-	</select>
+	
+	<!--修改活动表 根据id修改活动表 -->
+	<update id="updateIsVerByID" parameterType="com.zyx.model.MsgPushActivity">
+		update msg_push_activity
+        <set>
+            <if test="activityName != null">
+            	activity_name=#{activityName,jdbcType=VARCHAR},
+            </if>
+            <if test="activityInitiateUserId != null">
+            	activity_initiate_user_id=#{activityInitiateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="rewardContent != null">
+            	reward_content=#{rewardContent,jdbcType=VARCHAR},
+            </if>
+            <if test="rewardReceiveMethodId != null">
+            	reward_receive_method_id=#{rewardReceiveMethodId,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+            	start_time=#{startTime,jdbcType=VARCHAR},
+            </if>
+            <if test="endTime != null">
+            	end_time=#{endTime,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+            	create_time=#{createTime,jdbcType=VARCHAR},
+            </if>
+            	update_time=NOW(),
+            <if test="updateUserId != null">
+            	update_user_id=#{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnable != null">
+            	isEnable=#{isEnable,jdbcType=VARCHAR},
+            </if>
+            <if test="isVerified != null">
+            	isVerified=#{isVerified,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where 
+        activity_id=#{activityId,jdbcType=VARCHAR}
+	</update>
+	
 </mapper>

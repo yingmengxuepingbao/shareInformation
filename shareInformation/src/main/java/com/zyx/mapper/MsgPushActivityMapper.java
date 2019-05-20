@@ -26,7 +26,7 @@ public interface MsgPushActivityMapper extends BaseMapper<MsgPushActivity> {
 	/*
 	 * 我的发布：根据用户编号user_id（msg_push_user）即activity_initiate_user_id（msg_push_activity）查询数据
 	 */
-	public 	List<MsgPushActivity> selectActivityById(String activityInitiateUserId) ;
+	public 	List<MsgPushActivity> selActAllById(String activityInitiateUserId) ;
 	
 	/*
 	 * 信息发布：添加申请
@@ -41,4 +41,8 @@ public interface MsgPushActivityMapper extends BaseMapper<MsgPushActivity> {
 	  * 管理员身份，获取待审核活动列表
 	 */
 	public List<MsgPushActivity> getToauditedActivitList();
+	/*
+	 * 根据活动id修改状态
+	 */
+	public int updateIsVerByID(MsgPushActivity msgPushActivity);
 }

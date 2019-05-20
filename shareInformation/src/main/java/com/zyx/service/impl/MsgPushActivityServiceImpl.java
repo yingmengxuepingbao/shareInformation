@@ -1,5 +1,6 @@
 package com.zyx.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,8 @@ public class MsgPushActivityServiceImpl extends ServiceImpl<MsgPushActivityMappe
 	 * 我的发布：根据用户编号user_id（msg_push_user）即activity_initiate_user_id（msg_push_activity）查询数据
 	 */
 	@Override
-	public List<MsgPushActivity> selectActivityById(String activityInitiateUserId) {
-		System.out.println("活动表 服务实现类");
-		return msgPushActivityMapper.selectActivityById(activityInitiateUserId);
+	public List<MsgPushActivity> selActAllById(String activityInitiateUserId) {
+		return msgPushActivityMapper.selActAllById(activityInitiateUserId);
 	}
 
 	/*
@@ -52,16 +52,9 @@ public class MsgPushActivityServiceImpl extends ServiceImpl<MsgPushActivityMappe
 	 */
 	@Override
 	public int addActivity(MsgPushActivity msgPushActivity) {
-		System.out.println("ServiceImpl");
-		System.out.println("msgPushActivity:"+msgPushActivity);
-		System.out.println("MsgPushActivityRule:"+msgPushActivity.getMsgPushActivityRule());
-		System.out.println("MsgPushAwardReceivingWay:"+msgPushActivity.getMsgPushAwardReceivingWay());
-		
 		int  rule= msgPushActivityRuleMapper.addRule(msgPushActivity.getMsgPushActivityRule());
 		int  way= msgPushAwardReceivingWayMapper.addWay(msgPushActivity.getMsgPushAwardReceivingWay());
 		int  act =msgPushActivityMapper.addActivity(msgPushActivity);
-		
-		System.out.println("是否成功："+rule+"-"+way+"-"+act);
 		if(rule > 0 && way > 0 &&act>0) { //如果添加成功返回act 否则返回0
 			return  act;
 		}
@@ -83,6 +76,30 @@ public class MsgPushActivityServiceImpl extends ServiceImpl<MsgPushActivityMappe
 		return msgPushActivityMapper.getToauditedActivitList();
 	}
 
+	/*
+	 * 根据活动id修改状态
+	 */
+	@Override
+	public int updateIsVerByID(MsgPushActivity msgPushActivity) {
+		return msgPushActivityMapper.updateIsVerByID(msgPushActivity);
+	}
 
-
+	/*
+	 * 修改状态并查询列表
+	 */
+	@Override
+	public List<MsgPushActivity> modifyAndQuery(MsgPushActivity msgPushActivity) {
+		List<MsgPushActivity> list = new ArrayList<MsgPushActivity>();
+		int flage =  updateIsVerByID(msgPushActivity);
+		System.out.println("flage = "+flage);
+		//如果修改成功 查询待审批列表
+		if(flage>0) {
+			list= getToauditedActivitList();
+			System.out.println("修改成功 查询待审批列表 ="+list.size());
+		}
+		return list;
+	}
+	/*
+	 * 查看详情：根据活动id查询信息
+	 */
 }

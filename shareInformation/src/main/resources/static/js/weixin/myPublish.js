@@ -28,7 +28,7 @@ $(function(){
 					}
 					var str =  "<tr>"
 						+"<td>"
-						+"<input type='checkbox' name='ck' id='"+result[i].activityId+"'/>"
+						+"<input type='checkbox' id='"+result[i].activityId+"' value='"+result[i].activityId+"'/>"
 						+"</td>"
 						+"<td colspan='5'>"
 						+"<input type='hidden' value='"+result[i].activityId+"'>"
@@ -44,7 +44,7 @@ $(function(){
 					var v = "<tr>"
 						+"<td colspan='7'>"
 						+"<input type='radio' id='quanxuan_sign' />" 
-						+"<input type='button' id='checkAll' value='全选' onclick='checkAll()'/>"
+						+"<input type='button' id='checkAll' value='全选'  onclick='checkAll()'/>"
 						+"<input type='button' value='删除'   onclick='del()' />" 
 						+"</td>"
 						+"</tr>";
@@ -64,19 +64,57 @@ $(function(){
 	    }
 		});
 });
-//全选
-//$("#checkAll").bind("click", function () {
+//全选/取消
 function checkAll(){
-    if($(this).attr("checked") == 'checked'){
-        $("[name = 'ck']:checkbox").attr("checked", true);
-    } else {
-        $("[name = 'ck']:checkbox").attr("checked", false);
-    }
+	if($("#checkAll").val()=="全选"){//按钮：全选
+		$('input:checkbox').each(function() { 
+		    if (!$(this).prop('checked')) { //状态：未选中
+		    	$(this).prop('checked',true);//选中
+		    }
+		}); 
+		$("input:radio").prop('checked',true);//单选按钮选中
+		$("#checkAll").val("取消选中");
+	}else{//按钮：取消选中
+		$('input:checkbox').each(function() { 
+		    if ($(this).prop('checked')) { //状态：选中
+		    	$(this).prop('checked',false);//取消选中
+		    }
+		}); 
+		$("input:radio").prop('checked',false);//单选按钮选中取消
+		$("#checkAll").val("全选");
+	}
 }
-//});
 //删除：修改状态
 function del(){
+	var map=new Array();//创建数组
 	//判断选中哪些数据，进行批量删除/批量更改状态
+	$('input:checkbox').each(function() { 
+	    if ($(this).prop('checked')) { //状态：选中
+	    	var v =$(this).val();
+	    	map.push(v);//向数组中追加元素[1,2,3]
+	    }
+	}); 
+	console.log(JSON.stringify(map));
+	$.ajax({
+		  type: 'POST',
+		  url: "http://localhost:8080/msgPushActivity/updataIsEnableByID",
+		  data:JSON.stringify(map),
+		  contentType:'application/json;charset=utf-8',
+		  dataType:"json",
+		  success:function (data) {
+//			  var jsonObj = JSON.stringify(data);// 转成JSON格式
+//			  var result = $.parseJSON(jsonObj);// 转成JSON对象
+			  if(data.result=="sussess"){//成功后返回信息推送列表
+				  alert("删除成功");
+				  window.location.href ="http://localhost:8080/view/weixin/myPublish.html";
+			  }else{
+				  alert("删除失败");
+			  }
+		  }, 
+		  error:function () {
+	      	window.alert("删除异常");
+		  }
+		}); 
 	
 }
 //查看详情 

@@ -48,4 +48,8 @@ public interface MsgPushActivityService extends IService<MsgPushActivity> {
 	 * 修改状态并查询列表
 	 */
 	public List<MsgPushActivity> modifyAndQuery(MsgPushActivity msgPushActivity);
+	/*
+	 *批量删除：修改  IsEnable 是否禁用 0：禁用，1：启用
+	 */
+	public void updateIsEnableList(String[] arr);
 }

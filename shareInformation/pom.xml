@@ -72,44 +72,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		
-		<!-- 解决访问jsp变下载问题 start -->
-		<!--jsp支持-->
-		<!-- servlet 依赖. -->
-		<!-- <dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <scope>provided</scope>
-		</dependency>
-		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>jstl</artifactId>
-		    <scope>provided</scope>
-		</dependency>
-		tomcat 的支持.
-		<dependency>
-		    <groupId>org.apache.tomcat.embed</groupId>
-		    <artifactId>tomcat-embed-jasper</artifactId>
-		    <scope>provided</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.tomcat</groupId>
-		    <artifactId>tomcat-jsp-api</artifactId>
-		    <scope>provided</scope>
-		</dependency>
-		
-		<dependency>
-	    	<groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-tomcat</artifactId>
-		    <scope>provided</scope>
-		</dependency> -->
-		<!-- 解决访问jsp变下载问题 end -->
 		<!-- 解决：org.apache.ibatis.binding.BindingException:  -->
 		<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 		<!-- 解决：org.apache.ibatis.binding.BindingException: end -->
+	<!-- 添加json解析 -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    	<artifactId>jackson-databind</artifactId>
+	</dependency>
+	<!-- 添加json解析 end -->
 	</dependencies>
 
 	<build>

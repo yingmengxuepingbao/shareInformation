@@ -83,7 +83,6 @@ public class MsgPushActivityServiceImpl extends ServiceImpl<MsgPushActivityMappe
 	public int updateIsVerByID(MsgPushActivity msgPushActivity) {
 		return msgPushActivityMapper.updateIsVerByID(msgPushActivity);
 	}
-
 	/*
 	 * 修改状态并查询列表
 	 */
@@ -100,6 +99,22 @@ public class MsgPushActivityServiceImpl extends ServiceImpl<MsgPushActivityMappe
 		return list;
 	}
 	/*
+	 *批量删除：修改  IsEnable 是否禁用 0：禁用，1：启用
+	 */
+	@Override
+	public void updateIsEnableList(String[] arr) {
+		for(int i=0;i<arr.length;i++) {
+			updataIsEnableById(arr[i]);//循环修改
+		}
+	}
+	/*
+	 * 删除活动：修改  IsEnable 是否禁用 0：禁用，1：启用
+	 */
+	public int updataIsEnableById(String activityId) {
+		return msgPushActivityMapper.updataIsEnableById(activityId);
+	}
+	/*
 	 * 查看详情：根据活动id查询信息
 	 */
+
 }

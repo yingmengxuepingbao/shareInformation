@@ -1,6 +1,7 @@
 package com.zyx.controller;
 
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -124,6 +126,24 @@ public class MsgPushActivityController {
 		//根据id修改MsgPushActivity活动表，并查询待审批列表
 		List<MsgPushActivity> list = msgPushActivityService.modifyAndQuery(msgPushActivity);
 		return list;
+	}
+	/*
+	 * 删除活动：根据id更改 isEnable 是否禁用 0：禁用，1：启用
+	 */
+	@RequestMapping(value = "/updataIsEnableByID", method = RequestMethod.POST)//,produces="application/json;charset=utf-8;"
+	@ResponseBody
+	public Map<String,Object> updataIsEnableByID(@RequestBody String params){//["3","2","1"]
+		String str = params.substring(2, params.length()-2);//3","2","1
+		String[] arr = str.split("\",\""); // 用","分割
+		System.out.println(Arrays.toString(arr));
+		try {
+			msgPushActivityService.updateIsEnableList(arr);//批量删除
+		} catch (Exception e) {
+			System.out.println("异常");
+		}
+		Map<String,Object> returnMap =new HashMap<String,Object>();
+		returnMap.put("result", "sussess");
+		return returnMap;
 	}
 }
 

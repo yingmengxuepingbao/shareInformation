@@ -158,5 +158,13 @@ DATE_FORMAT(a.end_time,'%Y-%m-%d %H:%i:%s') end_time-->
         where 
         activity_id=#{activityId,jdbcType=VARCHAR}
 	</update>
-	
+	<!--删除活动表 根据id修改isEnable状态 -->
+	<update id="updataIsEnableById" parameterType="String">
+		update msg_push_activity 
+		<set>
+		isEnable=0
+		</set>
+		where 
+        activity_id=#{activityId,jdbcType=VARCHAR}
+	</update>
 </mapper>

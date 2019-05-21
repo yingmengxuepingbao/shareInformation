@@ -61,6 +61,9 @@ public class MsgPushMembershipLevel implements Serializable {
      * 是否禁用
      */
     private Integer isEnable;
+    
+    //用户ID
+    private String userId;
 
 
     public String getMembershipLevelId() {
@@ -126,8 +129,16 @@ public class MsgPushMembershipLevel implements Serializable {
     public void setIsEnable(Integer isEnable) {
         this.isEnable = isEnable;
     }
+    
+    public String getUserId() {
+		return userId;
+	}
 
-    @Override
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	@Override
     public String toString() {
         return "MsgPushMembershipLevel{" +
         "membershipLevelId=" + membershipLevelId +
@@ -138,6 +149,7 @@ public class MsgPushMembershipLevel implements Serializable {
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +
         ", isEnable=" + isEnable +
+        ", userId=" + userId +
         "}";
     }
 }

@@ -16,5 +16,22 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 @Mapper
 public interface MsgPushMembershipLevelMapper extends BaseMapper<MsgPushMembershipLevel> {
-
+	/**
+	 * 根据用户ID查询会员等级编号
+	 * @param userId
+	 * @return
+	 */
+	public String getIdByUserId(String userId);
+	/**
+	 * 根据会员等级编号查询会员信息
+	 * @param membershipLevelId
+	 * @return
+	 */
+	public MsgPushMembershipLevel selLevelById(String membershipLevelId);
+	/**
+	 * 根据用户ID查询会员信息
+	 * @param userId
+	 * @return
+	 */
+	public MsgPushMembershipLevel selLevelByUserId(String userId);
 }

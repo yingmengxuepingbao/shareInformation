@@ -12,6 +12,42 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
         <result column="isEnable" property="isEnable" />
+        
+        <result column="userId" property="userId" jdbcType="VARCHAR" />
     </resultMap>
-
+    <sql id="Base_Column_List">
+    membership_level_id,membership_level_name,recharge_amount,create_user_id,
+    update_user_id,create_time,update_time,isEnable
+    </sql>
+    <!-- 根据会员编号查询会员等级 -->
+    <select id="selLevelById" parameterType="String" resultMap="com.zyx.model.MsgPushMembershipLevel">
+	    select 
+	    <include refid="Base_Column_List" />
+		from msg_push_membership_level l 
+		where 
+		membership_level_id=#{membershipLevelId,jdbcType=VARCHAR} 
+    </select>
+	<!-- 根据用户ID查询会员等级编号 -->
+	<select id="getIdByUserId" parameterType="String" resultType="String">
+		select  membership_level_id
+		from msg_push_user_membership_relationship
+		where
+		user_id =#{userId,jdbcType=VARCHAR} 
+	</select>
+	<!-- 根据用户ID查询会员等级 -->
+	<select id="selLevelByUserId" parameterType="String" resultMap="com.zyx.model.MsgPushMembershipLevel">
+	    select 
+	    	<include refid="Base_Column_List" />
+		from 
+			msg_push_membership_level l 
+		where 
+			membership_level_id=(
+			select  
+				membership_level_id 
+			from 
+				msg_push_user_membership_relationship 
+			where 
+				user_id =#{userId,jdbcType=VARCHAR}
+			) 
+    </select>
 </mapper>

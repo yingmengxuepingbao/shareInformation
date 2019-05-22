@@ -48,4 +48,15 @@ public class MsgPushUserServiceImpl extends ServiceImpl<MsgPushUserMapper, MsgPu
 		return msgPushUserMapper.selectById(userId);
 	}
 
+	/**
+	 * 关联查询：根据openId 查询个人信息
+	 * @param openId 微信openId
+	 * @return MsgPushUser
+	 */
+	@Override
+	public MsgPushUser getUserByOpenId(String openId) {
+		System.out.println("关联查询：根据openId 查询个人信息");
+		return msgPushUserMapper.getUserByOpenId(openId);
+	}
+
 }

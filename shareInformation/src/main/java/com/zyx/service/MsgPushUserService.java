@@ -29,5 +29,12 @@ public interface MsgPushUserService extends IService<MsgPushUser> {
 	 * 根据用户ID查询用户
 	 */
 	public MsgPushUser selectById(String userId);
+	
+	/**
+	 * 关联查询：根据openId 查询个人信息
+	 * @param openId 微信openId
+	 * @return MsgPushUser
+	 */
+	public MsgPushUser getUserByOpenId(String openId);
 
 }

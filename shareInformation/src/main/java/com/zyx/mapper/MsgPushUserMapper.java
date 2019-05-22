@@ -19,7 +19,7 @@ import com.zyx.model.MsgPushUser;
 public interface MsgPushUserMapper extends BaseMapper<MsgPushUser> {
 	
 	/*
-	 * 根据参数Map查询用户
+	 * 根据参数Map（用户名，密码，角色）查询用户
 	 */
 	public MsgPushUser queryUserByMap(Map<String,Object> map);
 	
@@ -32,5 +32,11 @@ public interface MsgPushUserMapper extends BaseMapper<MsgPushUser> {
 	 * 根据用户ID查询用户
 	 */
 	public MsgPushUser selectById(String userId);
+	/**
+	 * 关联查询：根据openId 查询个人信息
+	 * @param openId 微信openId
+	 * @return MsgPushUser
+	 */
+	public MsgPushUser getUserByOpenId(String openId);
 
 }

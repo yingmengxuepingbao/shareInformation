@@ -37,6 +37,21 @@ public class MsgPushUserController {
 		return msgPushUser;
 		
 	}
-	
+	/**
+	 * 获取个人信息
+	 * @param request
+	 * @param response
+	 * @return MsgPushUser
+	 */
+	@RequestMapping(value = "/getPersonalInformation", method = RequestMethod.POST)
+	@ResponseBody
+	public MsgPushUser getPersonalInformation(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("进来了");
+		String openId = request.getParameter("openId");
+		//关联查询：根据openId 查询个人信息
+		MsgPushUser msgPushUser =msgPushUserService.getUserByOpenId(openId);
+		System.out.println(msgPushUser);
+		return msgPushUser;
+	}
 }
 

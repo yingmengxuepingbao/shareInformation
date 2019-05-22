@@ -269,6 +269,7 @@ CREATE TABLE `msg_push_user`  (
   `phone_num` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '手机号',
   `user_sex` char(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '性别',
   `user_email` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `user_address` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收货地址',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新日期',
   `isDelete` tinyint(1) NULL DEFAULT NULL COMMENT '是否删除',
@@ -334,10 +335,15 @@ CREATE TABLE `msg_push_verified_record`  (
 SET FOREIGN_KEY_CHECKS = 1;
 
 
-INSERT INTO `msg_push_user` VALUES ('1', 'zx', '123456', '13161372951', '女', '1163003193', '2019-5-25 22:24:11', '2019-5-15 22:24:14', 1);
-INSERT INTO `msg_push_user` VALUES ('2', 'zyx', '123456', '15653693446', '男', '1163003193', '2019-5-25 22:25:37', '2019-5-15 22:25:40', 1);
+INSERT INTO `msg_push_user` VALUES ('1', 'zx', '123456', '13161372951', '女', '1163003193','北京', '2019-5-25 22:24:11', '2019-5-15 22:24:14', 1);
+INSERT INTO `msg_push_user` VALUES ('2', 'zyx', '123456', '15653693446', '男', '1163003193', '山东','2019-5-25 22:25:37', '2019-5-15 22:25:40', 1);
 INSERT INTO `msg_push_role` VALUES ('1', 'administrators', '1', '2019-5-12 22:26:06', '2019-5-25 22:26:09');
 INSERT INTO `msg_push_role` VALUES ('2', 'ordinaryMember', '2', '2019-5-12 22:28:05', '2019-5-25 22:28:08');
+
+INSERT INTO msg_push_membership_level values('1','黄金会员','0','1','',now(),now(),'1');
+insert into msg_push_user_membership_relationship values('1','1','0',now(),now());
+insert into msg_push_user_wx_relationship values('1','1','艺馨','头像',now(),now());
+
 
 truncate table msg_push_activity;
 INSERT INTO `msg_push_activity` VALUES ('1', '张艺馨卖樱桃1', '1','1', '一斤樱桃','1','2019-5-12', '2019-5-25','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');

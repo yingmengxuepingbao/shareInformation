@@ -59,7 +59,7 @@ public class CodeGeneration {
        // strategy.setTablePrefix(new String[] { "sys_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
         strategy.setInclude(new String[] { 
-        		"msg_push_award_receiving_way"
+        		"msg_push_user"
 				/*
 				 * "msg_push_activity"
 				 * ,"msg_push_award_receiving_way"

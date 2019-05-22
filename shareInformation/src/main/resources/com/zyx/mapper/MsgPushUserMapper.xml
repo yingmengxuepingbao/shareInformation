@@ -10,12 +10,16 @@
         <result column="phone_num" property="phoneNum" />
         <result column="user_sex" property="userSex" />
         <result column="user_email" property="userEmail" />
+        <result column="user_address" property="userAddress" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
         <result column="isDelete" property="isDelete" />
+        
+        <result column="openId" property="openId" jdbcType="VARCHAR"/>
+        <result column="membershipLevelName" property="membershipLevelName" jdbcType="VARCHAR"/>
     </resultMap>
 	<sql id="Base_Column_List">
-      user_id,user_name,user_pwd,phone_num,user_sex,user_email
+      user_id,user_name,user_pwd,phone_num,user_sex,user_email,user_address
       ,create_time,update_time,isDelete
     </sql>
     
@@ -29,7 +33,7 @@
     <!-- 根据参数Map（用户名，密码，角色）查询用户 -->
      <select id="queryUserByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
         select
-       user_id,user_name,user_pwd,phone_num,user_sex,user_email
+       user_id,user_name,user_pwd,phone_num,user_sex,user_email,user_address
       ,u.create_time,u.update_time,isDelete
         FROM msg_push_user u
         ,msg_push_role r 
@@ -46,4 +50,32 @@
         FROM msg_push_user u
         WHERE u.user_name=#{userName,jdbcType=VARCHAR}
     </select>
+    
+  	<!--   关联查询：根据openId 查询个人信息 -->
+  	<select id="getUserByOpenId" parameterType="String" resultType="com.zyx.model.MsgPushUser">
+  		select 
+  		 	u.user_id userId,u.user_name userName
+  		 	,u.user_pwd userPwd,u.phone_num phoneNum
+  		 	,u.user_sex userSex,u.user_email userEmail
+  		 	,u.user_address userAddress
+      		,DATE_FORMAT(u.create_time,'%Y-%m-%d') createTime 
+		 	,DATE_FORMAT(u.update_time,'%Y-%m-%d') updateTime
+      		,u.isDelete isDelete
+      		,l.membership_level_name membershipLevelName
+  		 from 
+  		 	msg_push_user u ,msg_push_membership_level l,msg_push_user_membership_relationship r
+ 		 where 
+         u.user_id =r.user_id
+         and l.membership_level_id = r.membership_level_id
+         and
+ 		 	u.user_id=(           
+			select 
+				user_id 
+			from 
+				msg_push_user_wx_relationship 
+			where 
+				openId=#{openId,jdbcType=VARCHAR}
+			)
+  	</select>
+  
 </mapper>

@@ -11,5 +11,18 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
+	<sql id="Base_Column_List">
+	user_id,openId,msg_push_user_nick,msg_push_head_url,create_time,update_time
+	</sql>
+	
+	<!-- 根据用户openId查询用户Id -->
+	<select id="seleUserByOpenId" parameterType="String" resultType="com.zyx.model.MsgPushUserWxRelationship">
+		select
+			<include refid="Base_Column_List"/>
+		from
+			msg_push_user_wx_relationship
+		where
+			openId=#{openId,jdbcType=VARCHAR}
+	</select>
 
 </mapper>

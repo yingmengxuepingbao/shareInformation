@@ -17,4 +17,10 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 @Mapper
 public interface MsgPushUserWxRelationshipMapper extends BaseMapper<MsgPushUserWxRelationship> {
 
+	/**
+	 * 根据用户openId查询用户Id
+	 * @param openId
+	 * @return MsgPushUserWxRelationship
+	 */
+	public MsgPushUserWxRelationship seleUserByOpenId(String openId);
 }

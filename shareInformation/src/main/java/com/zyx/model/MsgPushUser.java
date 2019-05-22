@@ -54,6 +54,11 @@ public class MsgPushUser implements Serializable {
     @TableField("user_email")
     private String userEmail;
     /**
+     * 收货地址
+     */
+    @TableField("user_address")
+    private String userAddress;
+    /**
      * 创建日期
      */
     @TableField("create_time")
@@ -67,11 +72,11 @@ public class MsgPushUser implements Serializable {
      * 是否删除
      */
     private Integer isDelete;
-
-    /*
-     * 验证码
-     */
-    private String  verificationCode;
+    //微信openId
+    private String openId;
+    
+    //会员等级名称
+    private String membershipLevelName;
     
     public String getUserId() {
         return userId;
@@ -145,12 +150,28 @@ public class MsgPushUser implements Serializable {
         this.isDelete = isDelete;
     }
 
-    public String getVerificationCode() {
-		return verificationCode;
+	public String getOpenId() {
+		return openId;
 	}
 
-	public void setVerificationCode(String verificationCode) {
-		this.verificationCode = verificationCode;
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
+
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+
+	public String getMembershipLevelName() {
+		return membershipLevelName;
+	}
+
+	public void setMembershipLevelName(String membershipLevelName) {
+		this.membershipLevelName = membershipLevelName;
 	}
 
 	@Override
@@ -162,10 +183,12 @@ public class MsgPushUser implements Serializable {
         ", phoneNum=" + phoneNum +
         ", userSex=" + userSex +
         ", userEmail=" + userEmail +
+        ", userAddress=" + userAddress +
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +
         ", isDelete=" + isDelete +
-        ", verificationCode=" + verificationCode +
+        ", openId=" + openId +
+        ", membershipLevelName=" + membershipLevelName +
         "}";
     }
 }

@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zyx.model.MsgPushActivity;
 import com.zyx.model.MsgPushActivityRule;
 import com.zyx.model.MsgPushAwardReceivingWay;
+import com.zyx.model.MsgPushUser;
 import com.zyx.service.MsgPushActivityService;
+import com.zyx.service.MsgPushUserService;
 
 /**
  * <p>
@@ -35,15 +37,24 @@ public class MsgPushActivityController {
 	
 	@Autowired
 	private MsgPushActivityService msgPushActivityService;
+	@Autowired
+	private MsgPushUserService msgPushUserService;
 	
 	/*
 	 * 推广信息列表-主页：查询所有活动信息
 	 */
 	@RequestMapping(value = "/getActivitList", method = RequestMethod.POST)
 	@ResponseBody
-	public List<MsgPushActivity> getActivitList(){
+	public Map<String, Object> getActivitList(HttpServletRequest request,HttpServletResponse response){
+		String openId = request.getParameter("openId");
+		//关联查询：根据openId 查询个人信息
+		MsgPushUser msgPushUser =msgPushUserService.getUserByOpenId(openId);
+		//查询所有审核通过及状态正常的活动信息
 		List<MsgPushActivity> list =msgPushActivityService.getActivitList(0);//isVerified是否完成审核 0:审核通过，1：审核中，2：审核通过
-		return list;
+		Map<String,Object> returnMap =new HashMap<String,Object>();
+		returnMap.put("list", list);
+		returnMap.put("msgPushUser", msgPushUser);
+		return returnMap;
 	}
 
 	/*

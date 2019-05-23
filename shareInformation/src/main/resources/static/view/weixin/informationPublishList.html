@@ -6,6 +6,7 @@
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.0.js"></script>
 <script src="../../js/jquery-1.12.3.min.js"></script>
 <script src="../../js/gt.js"></script><base>
+<script src="../../js/weixin/informationPublishList.js"></script><base>
 <style>
 	.fudong{
 		width: 100%;
@@ -41,12 +42,20 @@
 </style>
 </head>
 <body>
-
+<div align="center" class="fudong">
+	<a href="javascript:;" onClick="javascript:history.back(-1);">
+		<img src="../../img/weixin_img/back.png" border="0" title="返回上一页">
+	</a>
+	<span>个人信息</span>
+</div>
  <div class="fudong" style="width: 100%">
 		<img alt="用户" src="../../img/weixin_img/user.png" >
 		<p class="myTitle">欢迎<input id="userName" class="userName">的到来</p>
-		<input type="hidden" id="activityInitiateUserId" value="1">
-		<div class="myRight"><input type="radio" checked="checked" value="金牌会员">金牌会员</div>
+		<input type="hidden" id="activityInitiateUserId" >
+		<div class="myRight">
+		<input type="radio" checked="checked">
+		<input type="text" id="membershipLevelName" readonly style="border-width:0;">
+		</div>
  </div>
  <div align="center" id="divData">
  <table border="1" cellspacing="0" cellpadding="0" >
@@ -57,43 +66,6 @@
 	  </tbody>
  </table>
  </div>
- 
- <script type="text/javascript">
-var activityInitiateUserId =$("#activityInitiateUserId").val();
-$.ajax({
-	  type: 'POST',
-	  url: "http://localhost:8080/msgPushActivity/getActivitList",
-	  data:{},
-	  dataType:"json",
-	  success:function (data) {
-		var jsonObj = JSON.stringify(data);// 转成JSON格式
-		 var result = $.parseJSON(jsonObj);// 转成JSON对象
-		 console.log(result);
-		 if(result.length>0){//存在数据时，拼接数据
-			 $("#userName").val(result[1].userName);
-			for(var i=0;i<result.length;i++){
-				var str = "<tr>"
-				+"<td colspan='5'>"
-				+"<p><span>活动名称： </span>"+result[i].activityName+"</p>"
-				+"<p><span>活动规则： </span>"+result[i].activityRuleName+"</p>"
-				+"<p><span>奖励内容： </span>"+result[i].rewardContent+"</p>"
-				+"<p><span>奖品领取方式： </span>"+result[i].receivingWayName+"</p>"
-				+"<p><span>信息发布者： </span>"+result[i].userName+"</p>"
-				+"<p><span>活动时间： </span>"+result[i].startTime+"~"+result[i].endTime+"</p>"
-				+"</td>"
-				+"<td colspan='2'><input type='button' id='zhuanfa"+i+"' value='转发'></td>"
-				+"</tr>";
-	 		$("#tbody").after(str);
-			}
-		 }else{//不存在数据
-			 $("#divData").after("暂无数据！");
-		 }
-	  }, 
-	  error:function () {
-      	window.alert("查询失败");
-    }
-	});
-</script>
 </body>
 
 </html>

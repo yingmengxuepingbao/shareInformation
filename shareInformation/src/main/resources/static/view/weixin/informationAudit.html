@@ -9,11 +9,20 @@
 <style type="text/css">
 body{ text-align:left} 
 .div{ margin:0 auto; width:400px; height:100px; border:1px } 
+img{
+		width: 50px;
+		height: 50px;
+	}
 </style>
 
 </head>
 <body>
-	<div align="center"><span>待审核信息列表</span></div>
+	<div align="center">
+		<a href="javascript:;" onClick="javascript:history.back(-1);">
+			<img src="../../img/weixin_img/back.png" border="0" title="返回上一页">
+		</a>
+		<span>待审核信息列表</span>
+	</div>
 
 	<input type="hidden" id="sign" >
 	<!-- 管理员身份可审核数据 -->

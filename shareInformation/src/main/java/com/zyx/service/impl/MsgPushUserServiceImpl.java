@@ -55,8 +55,16 @@ public class MsgPushUserServiceImpl extends ServiceImpl<MsgPushUserMapper, MsgPu
 	 */
 	@Override
 	public MsgPushUser getUserByOpenId(String openId) {
-		System.out.println("关联查询：根据openId 查询个人信息");
 		return msgPushUserMapper.getUserByOpenId(openId);
+	}
+
+	/**
+	 * 更新个人信息
+	 * @return
+	 */
+	@Override
+	public int updateUserById(MsgPushUser msgPushUser) {
+		return msgPushUserMapper.updateUserById(msgPushUser);
 	}
 
 }

@@ -39,4 +39,9 @@ public interface MsgPushUserMapper extends BaseMapper<MsgPushUser> {
 	 */
 	public MsgPushUser getUserByOpenId(String openId);
 
+	/**
+	 * 更新个人信息
+	 * @return
+	 */
+	public int updateUserById(MsgPushUser msgPushUser);
 }

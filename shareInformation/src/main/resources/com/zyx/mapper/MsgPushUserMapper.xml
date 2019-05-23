@@ -77,5 +77,28 @@
 				openId=#{openId,jdbcType=VARCHAR}
 			)
   	</select>
+  	<!-- 更新个人信息 -->
+  	<update id="updateUserById" parameterType="com.zyx.model.MsgPushUser">
+  	update msg_push_user
+  	<set>
+        <if test="userName != null">
+        user_name=#{userName,jdbcType=VARCHAR},
+        </if>
+        <if test="phoneNum != null">
+        phone_num=#{phoneNum,jdbcType=VARCHAR},
+        </if>
+        <if test="userSex != null">
+        user_sex=#{userSex,jdbcType=VARCHAR},
+        </if>
+        <if test="userEmail != null">
+        user_email=#{userEmail,jdbcType=VARCHAR},
+        </if>
+        <if test="userAddress != null">
+        user_address=#{userAddress,jdbcType=VARCHAR},
+        </if>
+        update_time=now()
+      </set>
+        where user_id=#{userId,jdbcType=VARCHAR}
+  	</update>
   
 </mapper>

@@ -36,5 +36,11 @@ public interface MsgPushUserService extends IService<MsgPushUser> {
 	 * @return MsgPushUser
 	 */
 	public MsgPushUser getUserByOpenId(String openId);
+	
+	/**
+	 * 更新个人信息
+	 * @return
+	 */
+	public int updateUserById(MsgPushUser msgPushUser);
 
 }

@@ -1,6 +1,9 @@
 package com.zyx.mapper;
 
+import com.zyx.model.MsgPushActivityExtendWay;
 import com.zyx.model.MsgPushActivityExtendWayVeritifyRecord;
+
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,4 +20,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 @Mapper
 public interface MsgPushActivityExtendWayVeritifyRecordMapper extends BaseMapper<MsgPushActivityExtendWayVeritifyRecord> {
 
+	
 }

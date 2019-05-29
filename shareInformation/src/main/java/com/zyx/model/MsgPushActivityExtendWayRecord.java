@@ -40,9 +40,19 @@ public class MsgPushActivityExtendWayRecord implements Serializable {
      * 创建日期
      */
     @TableField("create_time")
-    private Date createTime;
+    private String createTime;
 
-
+    //推广途径名称
+    private String extendWayName;
+    //活动名称
+    private String activityName;
+    //举办人
+    private String organizer;
+    //微信openId
+    private String openId;
+    //活动奖励
+    private String activityReward;
+    
     public String getId() {
         return id;
     }
@@ -67,21 +77,66 @@ public class MsgPushActivityExtendWayRecord implements Serializable {
         this.extendWayId = extendWayId;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+    public String getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 
-    @Override
+	public String getExtendWayName() {
+		return extendWayName;
+	}
+
+	public void setExtendWayName(String extendWayName) {
+		this.extendWayName = extendWayName;
+	}
+
+	public String getActivityName() {
+		return activityName;
+	}
+
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+	
+	public String getOrganizer() {
+		return organizer;
+	}
+
+	public void setOrganizer(String organizer) {
+		this.organizer = organizer;
+	}
+
+	public String getOpenId() {
+		return openId;
+	}
+
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
+
+	public String getActivityReward() {
+		return activityReward;
+	}
+
+	public void setActivityReward(String activityReward) {
+		this.activityReward = activityReward;
+	}
+
+	@Override
     public String toString() {
         return "MsgPushActivityExtendWayRecord{" +
         "id=" + id +
         ", userId=" + userId +
         ", extendWayId=" + extendWayId +
         ", createTime=" + createTime +
+        ", extendWayName=" + extendWayName +
+        ", activityName=" + activityName +
+        ", organizer=" + organizer +
+        ", openId=" + openId +
+        ", activityReward=" + activityReward +
         "}";
     }
 }

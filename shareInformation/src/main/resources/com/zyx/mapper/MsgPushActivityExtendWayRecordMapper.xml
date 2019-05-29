@@ -8,6 +8,39 @@
         <result column="user_id" property="userId" />
         <result column="extend_way_id" property="extendWayId" />
         <result column="create_time" property="createTime" />
+        
+        <result column="extendWayName" property="extendWayName" />
+        <result column="activityName" property="activityName" />
+        <result column="organizer" property="organizer" />
+        <result column="openId" property="openId" />
+        <result column="activityReward" property="activityReward" />
     </resultMap>
-
+	<sql id="Base_Column_List">
+		r.id,r.user_id,r.extend_way_id
+		,DATE_FORMAT(r.create_time,'%Y-%m-%d') create_time 
+	</sql>
+	<!--  根据用户openId,用户活动推广途径历史记录，关联查询用户表，活动推广途径关联表（活动表/推广途径字典表） -->
+	<select id="getRecordList" parameterType="String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        ,w.extend_way_name extendWayName
+        ,a.activity_name activityName
+        ,u.user_name organizer
+        ,x.openId openId
+        ,a.reward_content activityReward
+        from
+		msg_push_activity_extend_way_record r,
+		msg_push_activity_extend_way  e,
+		msg_push_extend_way w,
+		msg_push_activity a,
+		msg_push_user u,
+		msg_push_user_wx_relationship x
+		where 
+		r.extend_way_id = e.extend_way_id
+		and r.extend_way_id = w.extend_way_id 
+		and e.activity_id =a.activity_id
+		and r.user_id=x.user_id
+		and u.user_id=a.activity_initiate_user_id
+		and x.openId=#{openId,jdbcType=VARCHAR}
+    </select>
 </mapper>

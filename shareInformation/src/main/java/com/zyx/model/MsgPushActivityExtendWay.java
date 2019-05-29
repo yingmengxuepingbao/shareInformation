@@ -3,6 +3,8 @@ package com.zyx.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -31,6 +33,7 @@ public class MsgPushActivityExtendWay implements Serializable {
      * 活动编号
      */
     @TableField("activity_id")
+    @NotNull(message="活动编号不能为空")
     private String activityId;
     /**
      * 推广途径编号

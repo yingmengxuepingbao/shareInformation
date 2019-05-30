@@ -114,7 +114,11 @@ public class MsgPushActivityServiceImpl extends ServiceImpl<MsgPushActivityMappe
 		return msgPushActivityMapper.updataIsEnableById(activityId);
 	}
 	/*
-	 * 查看详情：根据活动id查询信息
+	 * 查看详情：根据活动id(activityId)查询信息
 	 */
+	public MsgPushActivity selectActivityByid(String activityId) {
+		return msgPushActivityMapper.selectActivityByid(activityId);
+	}
+	
 
 }

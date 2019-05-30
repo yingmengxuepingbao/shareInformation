@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.zyx.model.MsgPushActivity;
 import com.zyx.model.MsgPushActivityRule;
@@ -154,6 +156,25 @@ public class MsgPushActivityController {
 		}
 		Map<String,Object> returnMap =new HashMap<String,Object>();
 		returnMap.put("result", "sussess");
+		return returnMap;
+	}
+	/**
+	 * 根据活动id 查询信息发布详情
+	 * @param msgPushActivity 活动实体类
+	 * @return 返回详情页 viewDetails -msgPushActivity
+	 */
+	@RequestMapping(value = "/selectActivityByid", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> selectActivityByid(@Valid @RequestBody MsgPushActivity msgPushActivity){
+		System.out.println("进来了 "+msgPushActivity.getActivityId());
+		//根据活动表id，查询详情
+		String activityId =msgPushActivity.getActivityId();
+		MsgPushActivity activity = msgPushActivityService.selectActivityByid(activityId);
+		
+		Map<String,Object> returnMap =new HashMap<String,Object>();
+		if(returnMap!=null) {
+			returnMap.put("msgPushActivity", activity);
+		}
 		return returnMap;
 	}
 }

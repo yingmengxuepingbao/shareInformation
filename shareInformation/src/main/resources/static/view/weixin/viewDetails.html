@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <title>查看详情</title>
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.0.js"></script>
+<script src="../../js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../../js/weixin/viewDetails.js"></script>
+<style type="text/css">
+img{
+		width: 50px;
+		height: 50px;
+	}
+</style>
 </head>
 <body>
 <div align="center">
@@ -12,26 +20,11 @@
 	</a>
 	<span>查看详情</span>
 </div>
+<div>
 
+</div>
 <script type="text/javascript">
 wx.miniProgram.navigateTo({ url: '/path/to/page' });
-
-/*$.ajax({
-		  type: 'POST',
-		  url: "http://localhost:8080/msgPushActivity/getActById",
-		  data:{
-			  activityId:activityId
-			  },
-		  dataType:"json",
-		  success:function (data) {
-			var jsonObj = JSON.stringify(data);// 转成JSON格式
-			 var result = $.parseJSON(jsonObj);// 转成JSON对象
-			 console.log(result);
-		  }, 
-		  error:function () {
-	      	window.alert("查询失败");
-	    }
-		});*/
 </script>
 </body>
 </html>

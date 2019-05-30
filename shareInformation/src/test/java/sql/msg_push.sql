@@ -117,6 +117,33 @@ CREATE TABLE `msg_push_activity_rule`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '活动规则表' ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Table structure for msg_push_complaint_record
+-- ----------------------------
+DROP TABLE IF EXISTS `msg_push_complaint_record`;
+CREATE TABLE `msg_push_complaint_record`  (
+ `complaint_id` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL  COMMENT '投诉编号',
+  `complaint_user_id` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL  COMMENT '投诉用户编号',
+  `activity_id` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动id',
+  `complaint_reason` char(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '投诉理由',
+  `complaint_voucher_id` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '投诉凭证编号',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新日期',
+  PRIMARY KEY (`complaint_id`)
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户投诉记录表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for msg_push_complaint_voucher
+-- ----------------------------
+DROP TABLE IF EXISTS `msg_push_complaint_voucher`;
+CREATE TABLE `msg_push_complaint_voucher`  (
+ `complaint_voucher_id` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL  COMMENT '投诉凭证编号',
+ `complaint_voucher_picture` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '投诉凭证图片',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新日期',
+  PRIMARY KEY (`complaint_voucher_id`)
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '投诉凭证记录表' ROW_FORMAT = Compact;
+
+-- ----------------------------
 -- Table structure for msg_push_extend_way
 -- ----------------------------
 DROP TABLE IF EXISTS `msg_push_extend_way`;

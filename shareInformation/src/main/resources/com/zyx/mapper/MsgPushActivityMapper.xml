@@ -167,4 +167,25 @@ DATE_FORMAT(a.end_time,'%Y-%m-%d %H:%i:%s') end_time-->
 		where 
         activity_id=#{activityId,jdbcType=VARCHAR}
 	</update>
+	<select id="selectActivityByid" parameterType="String" resultMap="BaseResultMap">
+	select 
+	 		a.activity_id,a.activity_name,a.activity_initiate_user_id
+	 		,a.activity_rule_id,a.reward_content,a.reward_receive_method_id
+		 	,DATE_FORMAT(a.start_time,'%Y-%m-%d') start_time 
+		 	,DATE_FORMAT(a.end_time,'%Y-%m-%d') end_time
+		 	,DATE_FORMAT(a.create_time,'%Y-%m-%d') create_time
+			,a.isEnable,a.isVerified
+			,r.activity_rule_name activityRuleName
+			,u.user_name userName
+			,u.phone_num phoneNum
+			,w.receiving_way_name receivingWayName
+        from 
+        	msg_push_activity a,msg_push_activity_rule r, 
+        	msg_push_user u,msg_push_award_receiving_way w
+        where 
+        	a.activity_rule_id = r.activity_rule_id
+        	and a.activity_initiate_user_id = u.user_id
+        	and a.reward_receive_method_id = w.receiving_way_id
+        	and a.activity_id=#{activityId,jdbcType=VARCHAR}
+	</select>
 </mapper>

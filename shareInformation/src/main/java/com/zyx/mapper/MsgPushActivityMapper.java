@@ -50,4 +50,9 @@ public interface MsgPushActivityMapper extends BaseMapper<MsgPushActivity> {
 	 * 删除活动：修改  IsEnable 是否禁用 0：禁用，1：启用
 	 */
 	public int updataIsEnableById(String activityId);
+	
+	/*
+	 * 查看详情：根据活动id(activityId)查询信息
+	 */
+	public MsgPushActivity selectActivityByid(String activityId); 
 }

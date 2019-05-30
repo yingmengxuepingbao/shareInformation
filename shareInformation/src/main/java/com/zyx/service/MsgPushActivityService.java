@@ -52,4 +52,8 @@ public interface MsgPushActivityService extends IService<MsgPushActivity> {
 	 *批量删除：修改  IsEnable 是否禁用 0：禁用，1：启用
 	 */
 	public void updateIsEnableList(String[] arr);
+	/*
+	 * 查看详情：根据活动id(activityId)查询信息
+	 */
+	public MsgPushActivity selectActivityByid(String activityId);
 }

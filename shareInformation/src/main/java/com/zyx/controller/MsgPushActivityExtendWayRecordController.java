@@ -39,7 +39,6 @@ public class MsgPushActivityExtendWayRecordController {
 	@RequestMapping(value = "/getRecordList", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> getRecordList(@Valid @RequestBody MsgPushActivityExtendWayRecord msgPushActivityExtendWayRecord){
-	 System.out.println("进来了");
 	  String openId =msgPushActivityExtendWayRecord.getOpenId(); 
 	  //根据用户openId,用户活动推广途径历史记录，关联查询用户表，活动推广途径关联表（活动表/推广途径字典表）
 	  List<MsgPushActivityExtendWay> list =msgPushActivityExtendWayRecordService.getRecordList(openId);

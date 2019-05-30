@@ -1,12 +1,11 @@
 package com.zyx.model;
 
-import java.util.Date;
+import java.io.Serializable;
 
 import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
 
 /**
  * <p>
@@ -32,6 +31,11 @@ public class MsgPushRewardUser implements Serializable {
     @TableField("user_id")
     private String userId;
     /**
+     * 活动编号
+     */
+    @TableField("activity_id")
+    private String activityId;
+    /**
      * 活动推广途径编号
      */
     @TableField("extend_way_id")
@@ -45,9 +49,17 @@ public class MsgPushRewardUser implements Serializable {
      * 创建日期
      */
     @TableField("create_time")
-    private Date createTime;
-
-
+    private String createTime;
+    //活动名称
+    private String activityName;
+	//举办人
+	private String organizer;
+	//奖励内容
+	private String rewardContent;
+	//领奖人
+	private String prizeWinner;
+	//微信openId
+	private String openId;
     public String getId() {
         return id;
     }
@@ -80,15 +92,55 @@ public class MsgPushRewardUser implements Serializable {
         this.createUserId = createUserId;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+    public String getActivityName() {
+		return activityName;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
 
-    @Override
+	public String getOrganizer() {
+		return organizer;
+	}
+
+	public void setOrganizer(String organizer) {
+		this.organizer = organizer;
+	}
+
+	public String getRewardContent() {
+		return rewardContent;
+	}
+
+	public void setRewardContent(String rewardContent) {
+		this.rewardContent = rewardContent;
+	}
+
+	public String getPrizeWinner() {
+		return prizeWinner;
+	}
+
+	public void setPrizeWinner(String prizeWinner) {
+		this.prizeWinner = prizeWinner;
+	}
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+
+    public String getOpenId() {
+		return openId;
+	}
+
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
+
+	public String getCreateTime() {
+		return createTime;
+	}
+
+	@Override
     public String toString() {
         return "MsgPushRewardUser{" +
         "id=" + id +
@@ -96,6 +148,11 @@ public class MsgPushRewardUser implements Serializable {
         ", extendWayId=" + extendWayId +
         ", createUserId=" + createUserId +
         ", createTime=" + createTime +
+        ", activityName=" + activityName +
+        ", organizer=" + organizer +
+        ", rewardContent=" + rewardContent +
+        ", prizeWinner=" + prizeWinner +
+        ", openId=" + openId +
         "}";
     }
 }

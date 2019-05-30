@@ -70,8 +70,8 @@ CREATE TABLE `msg_push_activity_extend_way`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新日期',
   `update_user_id` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人员',
-  `isEnable` tinyint(1) NULL DEFAULT NULL COMMENT '是否禁用',
-  `isVeritified` tinyint(1) NULL DEFAULT NULL COMMENT '是否完成审核',
+  `isEnable` tinyint(1) NULL DEFAULT NULL COMMENT '是否禁用 0：禁用，1：启用',
+  `isVerified` tinyint(1) NULL DEFAULT NULL COMMENT '是否完成审核 0:审核通过，1：审核中，2：审核不通过',
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '活动推广途径关联表' ROW_FORMAT = Compact;
 
@@ -95,6 +95,7 @@ CREATE TABLE `msg_push_activity_extend_way_veritify_record`  (
   `activity_extend_way_id` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL  COMMENT '推广活动途径编号',
   `verfitied_user_id` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '审核人',
   `update_user_id` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
+  `isVerified` tinyint(1) NULL DEFAULT NULL COMMENT '是否完成审核 0:审核通过，1：审核中，2：审核不通过',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新日期',
    PRIMARY KEY (`activity_extend_way_id`)
@@ -124,7 +125,7 @@ CREATE TABLE `msg_push_extend_way`  (
   `extend_way_name` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '推广途径名称',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新日期',
-  `isEnable` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否禁用',
+  `isEnable` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否禁用，0：禁用；1：启用',
 PRIMARY KEY (`extend_way_id`)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '推广途径字典表' ROW_FORMAT = Compact;
 
@@ -337,12 +338,15 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO `msg_push_user` VALUES ('1', 'zx', '123456', '13161372951', '女', '1163003193','北京', '2019-5-25 22:24:11', '2019-5-15 22:24:14', 1);
 INSERT INTO `msg_push_user` VALUES ('2', 'zyx', '123456', '15653693446', '男', '1163003193', '山东','2019-5-25 22:25:37', '2019-5-15 22:25:40', 1);
+INSERT INTO `msg_push_user` VALUES ('3', '张艺馨', '123456', '15653693446', '女', '1163003193', '山东','2019-5-25 22:25:37', '2019-5-15 22:25:40', 1);
+
 INSERT INTO `msg_push_role` VALUES ('1', 'administrators', '1', '2019-5-12 22:26:06', '2019-5-25 22:26:09');
 INSERT INTO `msg_push_role` VALUES ('2', 'ordinaryMember', '2', '2019-5-12 22:28:05', '2019-5-25 22:28:08');
 
 INSERT INTO msg_push_membership_level values('1','黄金会员','0','1','',now(),now(),'1');
 insert into msg_push_user_membership_relationship values('1','1','0',now(),now());
 insert into msg_push_user_wx_relationship values('1','1','艺馨','头像',now(),now());
+insert into msg_push_user_wx_relationship values('3','3','德艺双馨','头像URL',now(),now());
 
 
 truncate table msg_push_activity;
@@ -360,3 +364,13 @@ INSERT INTO `msg_push_activity_rule` VALUES('3','转发消息送果币','1','1',
  INSERT INTO `msg_push_award_receiving_way` VALUES('2','线上发放','1','2019-5-12','2019-5-25','2019-5-15 22:28:05','2019-5-15 22:28:05');
  INSERT INTO `msg_push_award_receiving_way` VALUES('3','线上发放','1','2019-5-12','2019-5-25','2019-5-15 22:28:05','2019-5-15 22:28:05');
  
+ insert into msg_push_extend_way values('1','微信朋友圈',now(),now(),'1');
+ insert into msg_push_extend_way values('2','微信好友',now(),now(),'1');
+ insert into msg_push_extend_way values('3','qq好友',now(),now(),'1');
+ insert into msg_push_extend_way values('4','qq空间',now(),now(),'1');
+
+ insert into msg_push_activity_extend_way values('1','1','1','3',now(),now(),'1','1','0');
+ insert into msg_push_activity_extend_way values('2','2','1','3',now(),now(),'1','1','0');
+ 
+insert into  msg_push_activity_extend_way_record values('1','3','1',now());
+insert into  msg_push_activity_extend_way_record values('2','3','2',now());

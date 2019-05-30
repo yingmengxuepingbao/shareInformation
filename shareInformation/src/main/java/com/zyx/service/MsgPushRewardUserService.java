@@ -1,6 +1,9 @@
 package com.zyx.service;
 
 import com.zyx.model.MsgPushRewardUser;
+
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -13,4 +16,8 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface MsgPushRewardUserService extends IService<MsgPushRewardUser> {
 
+	/**
+	 * 根据微信openId 查询领奖记录
+	 */
+	public List<MsgPushRewardUser> getRewardByOpenId(String openId);
 }

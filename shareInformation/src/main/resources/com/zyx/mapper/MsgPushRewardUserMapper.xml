@@ -6,9 +6,58 @@
     <resultMap id="BaseResultMap" type="com.zyx.model.MsgPushRewardUser">
         <result column="id" property="id" />
         <result column="user_id" property="userId" />
+        <result column="activity_id" property="activityId" />
         <result column="extend_way_id" property="extendWayId" />
         <result column="create_user_id" property="createUserId" />
         <result column="create_time" property="createTime" />
+        
+        <result column="activityName" property="activityName" />
+        <result column="organizer" property="organizer" />
+        <result column="rewardContent" property="rewardContent" />
+        <result column="prizeWinner" property="prizeWinner" />
     </resultMap>
-
+    <sql id="Base_Column_List">
+    ru.id,ru.user_id,ru.extend_way_id,ru.create_user_id,DATE_FORMAT(ru.create_time,'%Y-%m-%d') create_time 
+    </sql>
+	<!-- 根据用户活动推广奖励记录表的id 查询领奖人 -->
+	<select id="getPrizeWinnerByid" parameterType="String" resultType="String">
+	select 
+		u.user_name 
+	from 
+		msg_push_user u 
+		, msg_push_reward_user ru 
+	where 
+		ru.user_id =u.user_id 
+		and ru.id=#{id,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据活动表的活动id 查询举办人 -->
+	<select id="getOrganizerByActivityId" parameterType="String" resultType="String">
+	select 
+		u.user_name 
+	from 
+		msg_push_user u 
+		, msg_push_activity a 
+	where  
+		a.activity_initiate_user_id =u.user_id 
+		and a.activity_id=#{activityId,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据微信openId 查询领奖记录（除兑奖人） -->
+	<select id="getRewardByOpenId" parameterType="String" resultMap="BaseResultMap">
+	select 
+		<include refid="Base_Column_List"/>
+		,a.activity_name activityName 
+		,a.reward_content rewardContent
+		,u.user_name organizer
+	from
+	 	msg_push_reward_user ru
+	 	,msg_push_activity a
+		,msg_push_user u
+		,msg_push_user_wx_relationship wr
+ 	where 
+		 ru.activity_id =a.activity_id
+		 and u.user_id = a.activity_initiate_user_id
+		 and wr.user_id=ru.user_id
+		 and wr.openId=#{openId,jdbcType=VARCHAR}
+	</select>
+	
 </mapper>

@@ -130,31 +130,34 @@ function del(){
 
 //查看详情 
 function particulars(activityId){
-	light.style.display='block'; 
-	fade.style.display='block'; 
+	$('#light_tbody').html("");
 	//跳转详情页
 	var data = JSON.stringify({"activityId":activityId});
 	$.ajax({
 		  type: 'POST',
-		  url: "http://localhost:8080/msgPushActivity/selActAllById",
+		  url: "http://localhost:8080/msgPushActivity/selectActivityByid",
 		  data:data,
 		  dataType:"json",
 		  contentType: "application/json",
 		  success:function (data) {
-			var jsonObj = JSON.stringify(data);// 转成JSON格式
+			/*var jsonObj = JSON.stringify(data);// 转成JSON格式
 			 var result = $.parseJSON(jsonObj);// 转成JSON对象
-			 console.log(result);
-			 if(result.length>0){//存在数据时，拼接数据
-				
-				
-			 }else{//不存在数据
-				 $("#divData").after("暂无数据！");
-				/* var str= "<tr align='center'>"
-						+"<td colspan='6' >"
-						+"<p><span>暂无数据！</span></p>"
+		 	 console.log(result);*/	
+			  
+			 if(data.msgPushActivity!=null){//存在数据时，拼接数据
+				 var str =  "<tr>"
+						+"<td colspan='5'>"
+						+"<p><span>活动名称：</span>"+data.msgPushActivity.activityName+"</p>"
+						+"<p><span>活动规则：</span>"+data.msgPushActivity.activityRuleName+"</p>"
+						+"<p><span>奖品领取方式：</span>"+data.msgPushActivity.receivingWayName+"</p>"
+						+"<p><span>信息发布者：</span>"+data.msgPushActivity.userName+"</p>"
+						+"<p><span>活动时间：</span>"+data.msgPushActivity.startTime+"-"+data.msgPushActivity.endTime+"</p>"
+						+"<p><span>联系电话：</span>"+data.msgPushActivity.phoneNum+"</p>"
 						+"</td>"
 						+"</tr>";
-				 $("#tbody").after(str);*/
+		 		$("#light_tbody").after(str);
+				 light.style.display='block'; 
+				 fade.style.display='block'; 
 			 }
 		  }, 
 		  error:function () {

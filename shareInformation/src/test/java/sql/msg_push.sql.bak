@@ -342,7 +342,7 @@ INSERT INTO `msg_push_role` VALUES ('2', 'ordinaryMember', '2', '2019-5-12 22:28
 
 INSERT INTO msg_push_membership_level values('1','黄金会员','0','1','',now(),now(),'1');
 insert into msg_push_user_membership_relationship values('1','1','0',now(),now());
-
+insert into msg_push_user_wx_relationship values('1','1','艺馨','头像',now(),now());
 
 
 truncate table msg_push_activity;

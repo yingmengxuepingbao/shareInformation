@@ -374,3 +374,5 @@ INSERT INTO `msg_push_activity_rule` VALUES('3','转发消息送果币','1','1',
  
 insert into  msg_push_activity_extend_way_record values('1','3','1',now());
 insert into  msg_push_activity_extend_way_record values('2','3','2',now());
+
+insert into msg_push_reward_user values('1','3','1','1',now());

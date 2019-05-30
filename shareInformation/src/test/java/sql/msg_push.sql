@@ -224,6 +224,7 @@ DROP TABLE IF EXISTS `msg_push_reward_user`;
 CREATE TABLE `msg_push_reward_user`  (
   `id` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL  COMMENT '主键',
   `user_id` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户编号',
+  `activity_id` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动编号',
   `extend_way_id` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动推广途径编号',
   `create_user_id` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建日期',
@@ -375,4 +376,5 @@ INSERT INTO `msg_push_activity_rule` VALUES('3','转发消息送果币','1','1',
 insert into  msg_push_activity_extend_way_record values('1','3','1',now());
 insert into  msg_push_activity_extend_way_record values('2','3','2',now());
 
-insert into msg_push_reward_user values('1','3','1','1',now());
+insert into msg_push_reward_user values('1','3','1','1','1',now());
+insert into msg_push_reward_user values('2','3','2','1','1',now());

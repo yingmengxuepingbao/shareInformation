@@ -4,12 +4,23 @@
 <meta charset="UTF-8">
 <title>投诉</title>
 <script src="../../js/jquery-1.12.3.min.js"></script>
+<script src="../../js/personalCenter/complaint.js"></script>
 <style type="text/css">
 img{
 		width: 50px;
 		height: 50px;
-
 	}
+#float {
+		position: absolute;
+		z-index: 1;
+	}
+			
+.file {
+		width: 50px;
+		height: 50px;
+		opacity: 0;
+	}
+	
 </style>
 </head>
 <body>
@@ -23,21 +34,28 @@ img{
 <table>
 	<tr>
 		<td>活动名称：</td>
-		<td><input type='text' id='' value=''></td>
+		<td><input type="text" id="activityName" readonly></td>
 	</tr>
 	<tr>
 		<td>活动编号：</td>
-		<td><input type='text' id='' value=''></td>
+		<td><input type="text" id="activityId" readonly></td>
 	</tr>
 	<tr>
 		<td>投诉理由：</td>
-		<td><input type='text' id='' value=''></td>
+		<td><input type="text" id="complaintReason"></td>
 	</tr>
 	<tr>
 		<td>投诉凭证：</td>
-		<td><img src='../../img/personalCenter/add.png' id='voucher'></td>
+		<td>
+			<div id="float">
+				<input type="file" class="file" id="file" accept="image/png,image/jpeg,image/gif" onchange="compress()"/>
+				<input type="hidden" id="count" >
+			</div>
+			<img src='../../img/personalCenter/add.png' id='voucher'>
+			<span >最多上传5张图片</span>
+		</td>
 	</tr>
-	<tr><td><input type='button' value='提交投诉'></td></tr>
+	<tr><td><input type='button' value='提交投诉'></td></tr>complaintVoucherPicture
 </table>
 </div>
 </body>

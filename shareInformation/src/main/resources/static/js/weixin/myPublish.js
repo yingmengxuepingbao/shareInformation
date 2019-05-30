@@ -130,7 +130,7 @@ function del(){
 
 //查看详情 
 function particulars(activityId){
-	$('#light_tbody').html("");
+	$("#light_tbody").next().remove();;
 	//跳转详情页
 	var data = JSON.stringify({"activityId":activityId});
 	$.ajax({

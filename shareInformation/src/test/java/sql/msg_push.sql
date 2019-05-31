@@ -378,19 +378,19 @@ insert into msg_push_user_wx_relationship values('3','3','德艺双馨','头像U
 
 
 truncate table msg_push_activity;
-INSERT INTO `msg_push_activity` VALUES ('1', '张艺馨卖樱桃1', '1','1', '一斤樱桃','1','2019-5-12', '2019-5-25','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');
-INSERT INTO `msg_push_activity` VALUES ('2', '张艺馨卖樱桃2', '1','1', '10元代金券','1','2019-5-12', '2019-5-25','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');
-INSERT INTO `msg_push_activity` VALUES ('3', '张艺馨卖樱桃3', '1','1', '5元代金券','1','2019-5-12', '2019-5-25','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');
+INSERT INTO `msg_push_activity` VALUES ('1', '张艺馨卖樱桃1', '1','1', '一斤樱桃','1','2019-5-12', '2019-8-25','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');
+INSERT INTO `msg_push_activity` VALUES ('2', '张艺馨卖樱桃2', '1','1', '10元代金券','1','2019-5-12', '2019-8-25','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');
+INSERT INTO `msg_push_activity` VALUES ('3', '张艺馨卖樱桃3', '1','1', '5元代金券','1','2019-5-12', '2019-8-25','2019-5-15 22:28:05', '2019-5-15 22:28:08','1','1','0');
  
 
-INSERT INTO `msg_push_activity_rule` VALUES('1','转发消息送樱桃','1','1','2019-5-12','2019-5-25','1');
-INSERT INTO `msg_push_activity_rule` VALUES('2','转发消息送代金券','1','1','2019-5-12','2019-5-25','1');
-INSERT INTO `msg_push_activity_rule` VALUES('3','转发消息送果币','1','1','2019-5-12','2019-5-25','1');
+INSERT INTO `msg_push_activity_rule` VALUES('1','转发消息送樱桃','1','1','2019-5-12','2019-8-25','1');
+INSERT INTO `msg_push_activity_rule` VALUES('2','转发消息送代金券','1','1','2019-5-12','2019-8-25','1');
+INSERT INTO `msg_push_activity_rule` VALUES('3','转发消息送果币','1','1','2019-5-12','2019-8-25','1');
  
  
- INSERT INTO `msg_push_award_receiving_way` VALUES('1','快递发货（快递费自费）','1','2019-5-12','2019-5-25','2019-5-15 22:28:05','2019-5-15 22:28:05');
- INSERT INTO `msg_push_award_receiving_way` VALUES('2','线上发放','1','2019-5-12','2019-5-25','2019-5-15 22:28:05','2019-5-15 22:28:05');
- INSERT INTO `msg_push_award_receiving_way` VALUES('3','线上发放','1','2019-5-12','2019-5-25','2019-5-15 22:28:05','2019-5-15 22:28:05');
+ INSERT INTO `msg_push_award_receiving_way` VALUES('1','快递发货（快递费自费）','1','2019-5-12','2019-8-25','2019-5-15 22:28:05','2019-5-15 22:28:05');
+ INSERT INTO `msg_push_award_receiving_way` VALUES('2','线上发放','1','2019-5-12','2019-8-25','2019-5-15 22:28:05','2019-5-15 22:28:05');
+ INSERT INTO `msg_push_award_receiving_way` VALUES('3','线上发放','1','2019-5-12','2019-8-25','2019-5-15 22:28:05','2019-5-15 22:28:05');
  
  insert into msg_push_extend_way values('1','微信朋友圈',now(),now(),'1');
  insert into msg_push_extend_way values('2','微信好友',now(),now(),'1');

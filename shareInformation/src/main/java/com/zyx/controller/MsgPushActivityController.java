@@ -166,7 +166,6 @@ public class MsgPushActivityController {
 	@RequestMapping(value = "/selectActivityByid", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> selectActivityByid(@Valid @RequestBody MsgPushActivity msgPushActivity){
-		System.out.println("进来了 "+msgPushActivity.getActivityId());
 		//根据活动表id，查询详情
 		String activityId =msgPushActivity.getActivityId();
 		MsgPushActivity activity = msgPushActivityService.selectActivityByid(activityId);

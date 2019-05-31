@@ -20,44 +20,52 @@ function parseURL(url){
     return res;
 }
 //对图片进行压缩
+var number= 0;
 function compress() { 
 	//最多上传五张图片
 	var count = $("#count").val();
 	if(count<5){
-		var number= Number(count)+Number(1);
-		$("#count").val(number);
-		alert($("#count").val());
-		var str ="<img id='img"+number+"' src=''>";
-		$("#voucher").after(str);
+		$("#count").val(Number(count)+Number(1));
+		
+		var str ="<div class='del_div' id='del"+number+"' style='display:inline-block;margin-left:10px;'>" 
+			+"<img class='chahao' id='chahao"+number+"' src='../../img/personalCenter/chahao.png' onclick='delImg(del"+number+")'>" 
+			+"<img id='img"+number+"'  src=''  class='myImg' name='complaintVoucherPicture'>"
+			+"</div>";
+		$("#imgCount").append(str);
 	}else{
 		return;
 	}
-    let fileObj = document.getElementById('file').files[0] //上传文件的对象
-    let reader = new FileReader()
-    reader.readAsDataURL(fileObj)
+    let fileObj = document.getElementById('file').files[0]; //上传文件的对象
+    let reader = new FileReader();
+    reader.readAsDataURL(fileObj);
     reader.onload = function(e) {
-        let image = new Image() //新建一个img标签（还没嵌入DOM节点)
-        image.src = e.target.result
+        let image = new Image(); //新建一个img标签（还没嵌入DOM节点)
+        image.src = e.target.result;
         image.onload = function() {
             let canvas = document.createElement('canvas'), 
             context = canvas.getContext('2d'),
             imageWidth = image.width / 2,    //压缩后图片的大小
             imageHeight = image.height / 2,
-            data = ''
+            data = '';
 
-            canvas.width = imageWidth
-            canvas.height = imageHeight
+            canvas.width = imageWidth;
+            canvas.height = imageHeight;
 
-            context.drawImage(image, 0, 0, imageWidth, imageHeight)
-            data = canvas.toDataURL('image/jpeg')
-
+            context.drawImage(image, 0, 0, imageWidth, imageHeight);
+            data = canvas.toDataURL('image/jpeg');
             //压缩完成 
-            var flage = $("#count").val();
-            document.getElementById('img'+flage).src = data
+            document.getElementById('img'+number).src = data;
+            number++;
         }
     }
 }
-
+//删除凭证图片
+function delImg(divNmuber){
+    imgCount.removeChild(divNmuber);
+    $("#count").val(Number($("#count").val())-Number(1));
+    $(".del_div").find(".myImg").prop("src");
+    console.log($(".del_div").find(".myImg").prop("src"));
+}
 /*$.ajax({
 	  type: 'POST',
 	  url: "http://localhost:8080/msgPushActivityExtendWayRecord/getRecordList",

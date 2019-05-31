@@ -16,11 +16,27 @@ img{
 	}
 			
 .file {
-		width: 50px;
-		height: 50px;
+		width: 60px;
+		height: 60px;
 		opacity: 0;
 	}
-	
+.del_div{
+	position: relative;
+	width: 50px;
+	height: 50px;
+}
+.myImg{
+	width: 50px;
+	height: 50px;
+}
+.chahao{
+	position: absolute;
+	width:20px; 
+	height:20px; 
+	top: -10px;
+	right: -10px;
+}	
+
 </style>
 </head>
 <body>
@@ -49,13 +65,16 @@ img{
 		<td>
 			<div id="float">
 				<input type="file" class="file" id="file" accept="image/png,image/jpeg,image/gif" onchange="compress()"/>
-				<input type="hidden" id="count" >
+				<input type="hidden" id="count" value='0'>
 			</div>
 			<img src='../../img/personalCenter/add.png' id='voucher'>
-			<span >最多上传5张图片</span>
+			<div id="imgCount">
+			
+			</div>
+			<span>最多上传5张图片</span>
 		</td>
 	</tr>
-	<tr><td><input type='button' value='提交投诉'></td></tr>complaintVoucherPicture
+	<tr><td><input type='button' value='提交投诉'></td></tr>
 </table>
 </div>
 </body>

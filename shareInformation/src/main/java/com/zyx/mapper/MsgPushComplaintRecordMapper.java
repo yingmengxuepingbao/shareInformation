@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface MsgPushComplaintRecordMapper extends BaseMapper<MsgPushComplaintRecord> {
 
+	/*
+	 * 添加投诉信息
+	 */
+	public int	addComplaint();
 }

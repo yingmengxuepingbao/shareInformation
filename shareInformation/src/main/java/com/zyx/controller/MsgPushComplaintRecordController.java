@@ -1,9 +1,19 @@
 package com.zyx.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.Map;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.zyx.model.MsgPushComplaintRecord;
+import com.zyx.service.MsgPushComplaintRecordService;
 
 /**
  * <p>
@@ -16,6 +26,18 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/msgPushComplaintRecord")
 public class MsgPushComplaintRecordController {
-
+	@Autowired
+	private MsgPushComplaintRecordService msgPushComplaintRecordService;
+	
+	/**
+	 * 添加投诉记录
+	 * @param msgPushComplaintRecord
+	 * @return
+	 */
+	@RequestMapping(value = "/addComplaint", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> addComplaint(@Valid @RequestBody MsgPushComplaintRecord msgPushComplaintRecord){
+		return null;
+	}
 }
 

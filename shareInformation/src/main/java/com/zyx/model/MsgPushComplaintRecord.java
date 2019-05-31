@@ -1,10 +1,12 @@
 package com.zyx.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
  * <p>
@@ -55,7 +57,8 @@ public class MsgPushComplaintRecord implements Serializable {
     @TableField("update_time")
     private Date updateTime;
 
-
+    private List<MsgPushComplaintVoucher> mpcvList;
+    
     public String getComplaintId() {
         return complaintId;
     }
@@ -112,7 +115,15 @@ public class MsgPushComplaintRecord implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
+    public List<MsgPushComplaintVoucher> getMpcvList() {
+		return mpcvList;
+	}
+
+	public void setMpcvList(List<MsgPushComplaintVoucher> mpcvList) {
+		this.mpcvList = mpcvList;
+	}
+
+	@Override
     public String toString() {
         return "MsgPushComplaintRecord{" +
         "complaintId=" + complaintId +
@@ -122,6 +133,7 @@ public class MsgPushComplaintRecord implements Serializable {
         ", complaintVoucherId=" + complaintVoucherId +
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +
+        ", mpcvList=" + mpcvList +
         "}";
     }
 }

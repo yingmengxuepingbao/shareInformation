@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface MsgPushComplaintRecordService extends IService<MsgPushComplaintRecord> {
 
+	/*
+	 * 添加投诉信息
+	 */
+	public int	addComplaint();
 }

@@ -44,7 +44,7 @@ $.ajax({
 });
 //投诉
 function complaint(activityId,activityName){
-	window.location.href = "../personalCenter/complaint.html?activityId="+activityId+"&activityName="+activityName;
+	window.location.href = "../personalCenter/complaint.html?activityId="+activityId+"&activityName="+activityName+"&openId="+openId;
 }
 
 //转发

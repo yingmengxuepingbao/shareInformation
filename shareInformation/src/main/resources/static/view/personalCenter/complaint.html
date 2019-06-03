@@ -36,7 +36,15 @@ img{
 	top: -10px;
 	right: -10px;
 }	
-
+table.information em{
+	display:block;
+	font-size:14px;
+	margin:0px 15px;
+	text-align:left;
+	color:#F00;
+	line-height:18px;
+	display:none;
+	}
 </style>
 </head>
 <body>
@@ -47,7 +55,8 @@ img{
 	<span>投诉</span>
 </div>
 <div>
-<table>
+<input type="hidden" id="openId">
+<table border="0" cellspacing="15" cellpadding="0" class="information">
 	<tr>
 		<td>活动名称：</td>
 		<td><input type="text" id="activityName" readonly></td>
@@ -58,7 +67,8 @@ img{
 	</tr>
 	<tr>
 		<td>投诉理由：</td>
-		<td><input type="text" id="complaintReason"></td>
+		<td><input type="text" id="complaintReason"> 
+		<em id="complaintReasonNameNull">请输入投诉理由</em></td>
 	</tr>
 	<tr>
 		<td>投诉凭证：</td>

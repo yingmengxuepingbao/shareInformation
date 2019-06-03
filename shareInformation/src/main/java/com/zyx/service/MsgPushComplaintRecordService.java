@@ -16,5 +16,6 @@ public interface MsgPushComplaintRecordService extends IService<MsgPushComplaint
 	/*
 	 * 添加投诉信息
 	 */
-	public int	addComplaint();
+	public int	addComplaint(MsgPushComplaintRecord msgPushComplaintRecord);
+
 }

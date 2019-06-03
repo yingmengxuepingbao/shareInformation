@@ -12,9 +12,12 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2019-05-30
  */
 public interface MsgPushComplaintRecordMapper extends BaseMapper<MsgPushComplaintRecord> {
-
+	/*
+	 * 获取UUID
+	 */
+	public String getUUID();
 	/*
 	 * 添加投诉信息
 	 */
-	public int	addComplaint();
+	public int	addComplaint(MsgPushComplaintRecord msgPushComplaintRecord);
 }

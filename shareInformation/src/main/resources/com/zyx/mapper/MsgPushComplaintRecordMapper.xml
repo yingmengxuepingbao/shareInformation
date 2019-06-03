@@ -2,15 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zyx.mapper.MsgPushComplaintRecordMapper">
 
-    <!-- 通用查询映射结果 -->
+    <!-- 通用查询映射结果  用户投诉记录表-->
     <resultMap id="BaseResultMap" type="com.zyx.model.MsgPushComplaintRecord">
         <id column="complaint_id" property="complaintId" />
         <result column="complaint_user_id" property="complaintUserId" />
         <result column="activity_id" property="activityId" />
         <result column="complaint_reason" property="complaintReason" />
-        <result column="complaint_voucher_id" property="complaintVoucherId" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
-
+    
+	<sql id="Base_Column_List">
+		r.complaint_id,r.complaint_user_id,r.activity_id,r.complaint_reason,r.create_time,r.update_time
+	</sql>
+	 <!-- 获取UUID -->
+	<select id="getUUID" resultType="String">
+		SELECT UUID() ;
+	</select>
+	<!-- 添加投诉信息 -->
+	<insert id="addComplaint" parameterType="com.zyx.model.MsgPushComplaintRecord">
+		INSERT INTO msg_push_complaint_record
+		(complaint_id,complaint_user_id,activity_id,complaint_reason,create_time,update_time)
+		values
+		(#{complaintId},#{complaintUserId},#{activityId},#{complaintReason},now(),now())
+	</insert>
 </mapper>

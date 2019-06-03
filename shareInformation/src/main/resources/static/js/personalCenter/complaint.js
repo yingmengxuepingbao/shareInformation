@@ -4,6 +4,7 @@ $(function(){
 	var res = parseURL(url);//获取参数值
 	$("#activityId").val(res.activityId);
 	$("#activityName").val(res.activityName);
+	$("#openId").val(res.openId);
 	
 });
 //解析URL
@@ -23,8 +24,10 @@ function parseURL(url){
 var number= 0; //用于标识图片
 var arrayObj = new Array();　//创建一个数组 	用于存储图片src
 var arrayNumber = new Array();　//创建一个数组 存放删除的图片标识
+var newArrayObj = new Array();
 function compress() { 
 	let fileObj = document.getElementById('file').files[0]; //上传文件的对象
+	//arrayObj.push(dataURL);//将图片路径放入数组
     if(fileObj !=undefined){//点击确定走/取消退出
 		//最多上传五张图片
 		var count = $("#count").val();
@@ -58,7 +61,7 @@ function compress() {
 	            data = canvas.toDataURL('image/jpeg');
 	            //压缩完成 
 	            document.getElementById('img'+number).src = data;
-	            arrayObj.push(data);//将图片路径放入数组
+	            arrayObj.push(data);//将图片放入数组
 	            number++;
 	        }
    
@@ -70,37 +73,51 @@ function delImg(divNumber,number){
     imgCount.removeChild(divNumber);
     $("#count").val(Number($("#count").val())-Number(1));
     arrayNumber.push(number);//将删除的标识放入数组
-    console.log("arrayNumber:"+arrayNumber);
 }
 function sub(){
 	var activityId = $("#activityId").val();
 	var activityName = $("#activityName").val();
 	var complaintReason = $("#complaintReason").val();
+	if(complaintReason==null||complaintReason==""||complaintReason==undefined){
+		$("#complaintReasonNameNull").attr("style", "display: block;");
+		return false;
+	}
 	//循环数组
 	var arrvalue;//用于存放取出的数组的值
 	for(var i=0;i<arrayNumber.length;i++){
 		arrvalue=arrayNumber[i];//数组的索引是从0开始的
 		delete arrayObj[arrvalue];
 	}
-	console.log(arrayObj);
+	for(var i=0;i<arrayObj.length;i++){//循环数组，移除为空的元素
+		if(arrayObj[i]!=undefined && arrayObj[i]!="" && arrayObj[i]!=null){
+			newArrayObj.push(arrayObj[i]);
+		}
+	}
+	console.log(newArrayObj);
 	
+	var openId = $("#openId").val();
 	
-	var data = JSON.stringify({"activityId":activityId,"activityName":activityName,"complaintReason":complaintReason});
-	/*$.ajax({
+	var mpcvList=arrayNumber;
+	
+	var data = JSON.stringify({"openId":openId,"activityId":activityId,"activityName":activityName,"complaintReason":complaintReason,"mpcvList":mpcvList});
+	$.ajax({
 	  type: 'POST',
-	  url: "http://localhost:8080/msgPushActivityExtendWayRecord/getRecordList",
+	  url: "http://localhost:8080/msgPushComplaintRecord/addComplaint",
 	  data:data,
 	  dataType:"json",
 	  contentType: "application/json",
 	  success:function (data) {
-		var jsonObj = JSON.stringify(data);// 转成JSON格式
+		/*var jsonObj = JSON.stringify(data);// 转成JSON格式
 		 var result = $.parseJSON(jsonObj);// 转成JSON对象
-		 console.log(result);
-		 if(result.length>0){//存在数据时，拼接数据
+		 console.log(result);*/
+		 if(data.result=="sussess"){//存在数据时，拼接数据
+			 window.alert("添加成功");
+		 }else{
+			 window.alert("添加失败");
 		 }
 	  }, 
 	  error:function () {
 		  window.alert("查询失败");
 	  }
-	});*/
+	});
 } 

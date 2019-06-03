@@ -1,7 +1,9 @@
 package com.zyx.mapper;
 
-import com.zyx.model.MsgPushComplaintVoucher;
+import java.util.List;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.zyx.model.MsgPushComplaintVoucher;
 
 /**
  * <p>
@@ -13,4 +15,14 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface MsgPushComplaintVoucherMapper extends BaseMapper<MsgPushComplaintVoucher> {
 
+	/*
+	 * 获取UUID
+	 */
+	public String getUUID();
+	/*
+	 * 添加投诉信息
+	 * @param list
+	 * @return
+	 */
+	int addComplaintVoucher(List<MsgPushComplaintVoucher> list);
 }

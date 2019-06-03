@@ -6,8 +6,27 @@
     <resultMap id="BaseResultMap" type="com.zyx.model.MsgPushComplaintVoucher">
         <id column="complaint_voucher_id" property="complaintVoucherId" />
         <result column="complaint_voucher_picture" property="complaintVoucherPicture" />
+        <result column="complaint_id" property="complaintId" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
-
+	<sql id="Base_Column_List">
+		v.complaint_voucher_id,v.complaint_voucher_picture,v.complaint_id
+		,v.create_time,v.update_time
+	</sql>
+	 <!-- 获取UUID -->
+	<select id="getUUID" resultType="String">
+		SELECT UUID() ;
+	</select>
+	
+	<!-- 添加投诉凭证记录 -->
+	<insert id="addComplaintVoucher" parameterType="java.util.List" useGeneratedKeys="false">
+		INSERT INTO msg_push_complaint_voucher
+		(complaint_voucher_id,complaint_voucher_picture,complaint_id,create_time,update_time)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+	    (#{complaintVoucherId},#{complaintVoucherPicture},#{complaintVoucherPicture}
+		,#{complaintVoucherPicture},#{complaintVoucherPicture})
+		 </foreach>		
+	</insert>
 </mapper>

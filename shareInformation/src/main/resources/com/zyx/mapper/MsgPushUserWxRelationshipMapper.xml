@@ -16,7 +16,7 @@
 	</sql>
 	
 	<!-- 根据用户openId查询用户Id -->
-	<select id="seleUserByOpenId" parameterType="String" resultType="com.zyx.model.MsgPushUserWxRelationship">
+	<select id="seleUserByOpenId" parameterType="String" resultMap="BaseResultMap">
 		select
 			<include refid="Base_Column_List"/>
 		from

@@ -1,10 +1,13 @@
 package com.zyx.model;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+import java.util.Date;
+
+import javax.validation.constraints.NotBlank;
+
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
  * <p>
@@ -28,7 +31,13 @@ public class MsgPushComplaintVoucher implements Serializable {
      * 投诉凭证图片
      */
     @TableField("complaint_voucher_picture")
+    @NotBlank(message="图片不能为空")
     private String complaintVoucherPicture;
+    /**
+     * 投诉编号
+     */
+    @TableId("complaint_id")
+    private String complaintId;
     /**
      * 创建日期
      */
@@ -73,11 +82,20 @@ public class MsgPushComplaintVoucher implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
+    public String getComplaintId() {
+		return complaintId;
+	}
+
+	public void setComplaintId(String complaintId) {
+		this.complaintId = complaintId;
+	}
+
+	@Override
     public String toString() {
         return "MsgPushComplaintVoucher{" +
         "complaintVoucherId=" + complaintVoucherId +
         ", complaintVoucherPicture=" + complaintVoucherPicture +
+        "complaintId=" + complaintId +
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +
         "}";

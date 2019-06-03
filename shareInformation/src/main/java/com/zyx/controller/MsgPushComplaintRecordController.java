@@ -1,6 +1,7 @@
 package com.zyx.controller;
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -37,7 +38,15 @@ public class MsgPushComplaintRecordController {
 	@RequestMapping(value = "/addComplaint", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> addComplaint(@Valid @RequestBody MsgPushComplaintRecord msgPushComplaintRecord){
-		return null;
+		System.out.println(msgPushComplaintRecord);
+		System.out.println(msgPushComplaintRecord.getMpcvList());
+		
+		int number = msgPushComplaintRecordService.addComplaint(msgPushComplaintRecord);
+		Map<String,Object> returnMap =new HashMap<String,Object>();
+		if(number>0) {
+			returnMap.put("result", "sussess");
+		}
+		return returnMap;
 	}
 }
 

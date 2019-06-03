@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -40,12 +42,8 @@ public class MsgPushComplaintRecord implements Serializable {
      * 投诉理由
      */
     @TableField("complaint_reason")
+    @NotBlank(message="投诉理由不能为空")
     private String complaintReason;
-    /**
-     * 投诉凭证编号
-     */
-    @TableField("complaint_voucher_id")
-    private String complaintVoucherId;
     /**
      * 创建日期
      */
@@ -56,8 +54,11 @@ public class MsgPushComplaintRecord implements Serializable {
      */
     @TableField("update_time")
     private Date updateTime;
-
+    
+    //投诉凭证记录表
     private List<MsgPushComplaintVoucher> mpcvList;
+    //微信openId
+    private String openId;
     
     public String getComplaintId() {
         return complaintId;
@@ -91,14 +92,6 @@ public class MsgPushComplaintRecord implements Serializable {
         this.complaintReason = complaintReason;
     }
 
-    public String getComplaintVoucherId() {
-        return complaintVoucherId;
-    }
-
-    public void setComplaintVoucherId(String complaintVoucherId) {
-        this.complaintVoucherId = complaintVoucherId;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -123,6 +116,14 @@ public class MsgPushComplaintRecord implements Serializable {
 		this.mpcvList = mpcvList;
 	}
 
+	public String getOpenId() {
+		return openId;
+	}
+
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
+
 	@Override
     public String toString() {
         return "MsgPushComplaintRecord{" +
@@ -130,10 +131,10 @@ public class MsgPushComplaintRecord implements Serializable {
         ", complaintUserId=" + complaintUserId +
         ", activityId=" + activityId +
         ", complaintReason=" + complaintReason +
-        ", complaintVoucherId=" + complaintVoucherId +
         ", createTime=" + createTime +
         ", updateTime=" + updateTime +
         ", mpcvList=" + mpcvList +
+        ", openId=" + openId +
         "}";
     }
 }

@@ -43,6 +43,8 @@ public class MsgPushComplaintRecordServiceImpl extends ServiceImpl<MsgPushCompla
 		String UUID = msgPushComplaintRecordMapper.getUUID();
 		msgPushComplaintRecord.setComplaintId(UUID);
 		msgPushComplaintRecord.setComplaintUserId(userId);
+		
+		System.out.println("mpcvList = "+msgPushComplaintRecord.getMpcvList());
 		//获取投诉凭证相关信息
 		List<MsgPushComplaintVoucher> list =msgPushComplaintRecord.getMpcvList();
 		int number =0;
@@ -50,12 +52,16 @@ public class MsgPushComplaintRecordServiceImpl extends ServiceImpl<MsgPushCompla
 		if(list.size()>0) {
 			//添加投诉信息主表
 			number = msgPushComplaintRecordMapper.addComplaint(msgPushComplaintRecord);
-			for(int i=0;i<list.size();i++) {//循环获取投诉凭证记录ID
-				String list_UUID=msgPushComplaintVoucherMapper.getUUID();//获取主键uuid
-				list.get(i).setComplaintVoucherId(list_UUID);//id赋值
-				list.get(i).setComplaintId(UUID);//将用户投诉Id赋值	
+			if(number>0) {
+				for(int i=0;i<list.size();i++) {//循环获取投诉凭证记录ID
+					list.get(i).setComplaintId(UUID);//将用户投诉Id赋值	
+					String list_UUID=msgPushComplaintVoucherMapper.getUUID();//获取主键uuid
+					System.out.println("UUID = "+UUID+"----  list_UUID = "+list_UUID);
+					list.get(i).setComplaintVoucherId(list_UUID);//id赋值
+					System.out.println("list = "+list.get(i));
+				}
+				num = msgPushComplaintVoucherMapper.addComplaintVoucher(list);
 			}
-			num = msgPushComplaintVoucherMapper.addComplaintVoucher(list);
 		}
 		if(number>0&&num>0) {
 			return 1;

@@ -25,8 +25,8 @@
 		(complaint_voucher_id,complaint_voucher_picture,complaint_id,create_time,update_time)
 		values
 		<foreach collection="list" item="item" index="index" separator=",">
-	    (#{complaintVoucherId},#{complaintVoucherPicture},#{complaintVoucherPicture}
-		,#{complaintVoucherPicture},#{complaintVoucherPicture})
+	    (#{item.complaintVoucherId},#{item.complaintVoucherPicture},#{item.complaintId}
+		,now(),now())
 		 </foreach>		
 	</insert>
 </mapper>

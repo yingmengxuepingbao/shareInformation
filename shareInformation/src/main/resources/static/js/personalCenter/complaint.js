@@ -26,8 +26,16 @@ var arrayObj = new Array();　//创建一个数组 	用于存储图片src
 var arrayNumber = new Array();　//创建一个数组 存放删除的图片标识
 var newArrayObj = new Array();
 function compress() { 
-	let fileObj = document.getElementById('file').files[0]; //上传文件的对象
-	//arrayObj.push(dataURL);//将图片路径放入数组
+	//将提示隐藏
+	$("#complaintReasonNameNull").attr("style", "display: none;");
+	
+	let fileObj = document.getElementById("file").files[0]; //上传文件的对象
+	alert("fileObj="+fileObj);
+	var dataURL=  window.URL.createObjectURL(fileObj);
+	console.log("dataURL = "+dataURL);
+	alert("dataURL = "+dataURL);
+	arrayObj.push(dataURL);//将图片路径放入数组
+	alert(arrayObj);
     if(fileObj !=undefined){//点击确定走/取消退出
 		//最多上传五张图片
 		var count = $("#count").val();
@@ -61,7 +69,7 @@ function compress() {
 	            data = canvas.toDataURL('image/jpeg');
 	            //压缩完成 
 	            document.getElementById('img'+number).src = data;
-	            arrayObj.push(data);//将图片放入数组
+	            //arrayObj.push(data);//将图片放入数组
 	            number++;
 	        }
    
@@ -81,6 +89,8 @@ function sub(){
 	if(complaintReason==null||complaintReason==""||complaintReason==undefined){
 		$("#complaintReasonNameNull").attr("style", "display: block;");
 		return false;
+	}else{
+		$("#complaintReasonNameNull").attr("style", "display: none;");
 	}
 	//循环数组
 	var arrvalue;//用于存放取出的数组的值
@@ -88,18 +98,23 @@ function sub(){
 		arrvalue=arrayNumber[i];//数组的索引是从0开始的
 		delete arrayObj[arrvalue];
 	}
+	console.log("arrayObj="+arrayObj);
 	for(var i=0;i<arrayObj.length;i++){//循环数组，移除为空的元素
 		if(arrayObj[i]!=undefined && arrayObj[i]!="" && arrayObj[i]!=null){
 			newArrayObj.push(arrayObj[i]);
 		}
 	}
-	console.log(newArrayObj);
-	
+	console.log("newArrayObj = "+newArrayObj);
 	var openId = $("#openId").val();
-	
-	var mpcvList=arrayNumber;
-	
-	var data = JSON.stringify({"openId":openId,"activityId":activityId,"activityName":activityName,"complaintReason":complaintReason,"mpcvList":mpcvList});
+	var mpcvArr=newArrayObj;
+	alert(newArrayObj);
+	if(newArrayObj=="" ||newArrayObj==null|| newArrayObj==undefined){
+		$("#complaintVoucherPictureNull").attr("style", "display: block;");
+		return false;
+	}else{
+		$("#complaintVoucherPictureNull").attr("style", "display: none;");
+	}
+	var data = JSON.stringify({"openId":openId,"activityId":activityId,"activityName":activityName,"complaintReason":complaintReason,"mpcvArr":mpcvArr});
 	$.ajax({
 	  type: 'POST',
 	  url: "http://localhost:8080/msgPushComplaintRecord/addComplaint",

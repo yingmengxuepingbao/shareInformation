@@ -1,7 +1,9 @@
 package com.zyx.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zyx.model.MsgPushComplaintRecord;
+import com.zyx.model.MsgPushComplaintVoucher;
 import com.zyx.service.MsgPushComplaintRecordService;
 
 /**
@@ -38,10 +41,20 @@ public class MsgPushComplaintRecordController {
 	@RequestMapping(value = "/addComplaint", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> addComplaint(@Valid @RequestBody MsgPushComplaintRecord msgPushComplaintRecord){
-		System.out.println(msgPushComplaintRecord);
-		System.out.println(msgPushComplaintRecord.getMpcvList());
+		//将前台的数据转换成list
+		String [] arr = msgPushComplaintRecord.getMpcvArr();
+		List<MsgPushComplaintVoucher> mpcvList =new ArrayList<MsgPushComplaintVoucher>();
+		int number =0;
+		if(msgPushComplaintRecord.getMpcvArr().length>0) {
+			for(int i=0;i<arr.length;i++) {
+				MsgPushComplaintVoucher mpcv = new MsgPushComplaintVoucher();
+				mpcv.setComplaintVoucherPicture(arr[i]);
+				mpcvList.add(mpcv);
+			}
+			msgPushComplaintRecord.setMpcvList(mpcvList);
+			number = msgPushComplaintRecordService.addComplaint(msgPushComplaintRecord);
+		}
 		
-		int number = msgPushComplaintRecordService.addComplaint(msgPushComplaintRecord);
 		Map<String,Object> returnMap =new HashMap<String,Object>();
 		if(number>0) {
 			returnMap.put("result", "sussess");

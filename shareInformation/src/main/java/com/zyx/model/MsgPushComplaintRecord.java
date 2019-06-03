@@ -59,6 +59,8 @@ public class MsgPushComplaintRecord implements Serializable {
     private List<MsgPushComplaintVoucher> mpcvList;
     //微信openId
     private String openId;
+    //用于接收前台传输的图片路径
+    private String[] mpcvArr;
     
     public String getComplaintId() {
         return complaintId;
@@ -124,6 +126,14 @@ public class MsgPushComplaintRecord implements Serializable {
 		this.openId = openId;
 	}
 
+	public String[] getMpcvArr() {
+		return mpcvArr;
+	}
+
+	public void setMpcvArr(String[] mpcvArr) {
+		this.mpcvArr = mpcvArr;
+	}
+
 	@Override
     public String toString() {
         return "MsgPushComplaintRecord{" +
@@ -135,6 +145,7 @@ public class MsgPushComplaintRecord implements Serializable {
         ", updateTime=" + updateTime +
         ", mpcvList=" + mpcvList +
         ", openId=" + openId +
+         ", mpcvArr=" + mpcvArr +
         "}";
     }
 }

@@ -34,7 +34,6 @@ public class MsgPushRewardUserController {
 	@RequestMapping(value = "/getRewardByOpenId", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> getRewardByOpenId(@Valid @RequestBody MsgPushRewardUser msgPushRewardUser){
-	 System.out.println("进来了");
 	 String openId =msgPushRewardUser.getOpenId();
 	 List<MsgPushRewardUser> list =msgPushRewardUserService.getRewardByOpenId(openId);
 	 Map<String,Object> returnMap =new HashMap<String,Object>();

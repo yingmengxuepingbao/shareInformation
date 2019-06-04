@@ -10,10 +10,13 @@
         <result column="complaint_reason" property="complaintReason" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
+        <result column="activityName" property="activityName" />
     </resultMap>
     
 	<sql id="Base_Column_List">
-		r.complaint_id,r.complaint_user_id,r.activity_id,r.complaint_reason,r.create_time,r.update_time
+		r.complaint_id,r.complaint_user_id,r.activity_id,r.complaint_reason
+		,DATE_FORMAT(r.create_time,'%Y-%m-%d') create_time 
+		,DATE_FORMAT(r.update_time,'%Y-%m-%d') update_time
 	</sql>
 	 <!-- 获取UUID -->
 	<select id="getUUID" resultType="String">
@@ -26,4 +29,26 @@
 		values
 		(#{complaintId},#{complaintUserId},#{activityId},#{complaintReason},now(),now())
 	</insert>
+	<!-- 根据用户id查询投诉总条数 -->
+	<select id="selectCountByComplaintUserId" parameterType="String" resultType="java.lang.Integer">
+		select 
+			count(*) 
+		from 
+			msg_push_complaint_record 
+		where 
+			complaint_user_id =#{complaintUserId,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据用户id查询用户投诉记录 -->
+	<select id="selectMsgPushComplaintRecord" parameterType="String" resultMap="BaseResultMap">
+		select 
+			<include refid="Base_Column_List"/>
+			,a.activity_name activityName 
+		from 
+			msg_push_complaint_record r
+			,msg_push_activity a 
+		where 
+			r.activity_id = a.activity_id
+			and
+			r.complaint_user_id=#{complaintUserId,jdbcType=VARCHAR}
+	</select>
 </mapper>

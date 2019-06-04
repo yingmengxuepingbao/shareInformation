@@ -24,5 +24,11 @@ public interface MsgPushComplaintVoucherMapper extends BaseMapper<MsgPushComplai
 	 * @param list
 	 * @return
 	 */
-	int addComplaintVoucher(List<MsgPushComplaintVoucher> list);
+	public int addComplaintVoucher(List<MsgPushComplaintVoucher> list);
+	/*
+	 * 根据投诉用户编号，查询投诉凭证
+	 * @param complaintUserId
+	 * @return
+	 */
+	public List<MsgPushComplaintVoucher> selectComplaintVoucherByUserId(String complaintUserId);
 }

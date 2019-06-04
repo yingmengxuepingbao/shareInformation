@@ -30,12 +30,9 @@ function compress() {
 	$("#complaintReasonNameNull").attr("style", "display: none;");
 	
 	let fileObj = document.getElementById("file").files[0]; //上传文件的对象
-	alert("fileObj="+fileObj);
 	var dataURL=  window.URL.createObjectURL(fileObj);
 	console.log("dataURL = "+dataURL);
-	alert("dataURL = "+dataURL);
 	arrayObj.push(dataURL);//将图片路径放入数组
-	alert(arrayObj);
     if(fileObj !=undefined){//点击确定走/取消退出
 		//最多上传五张图片
 		var count = $("#count").val();
@@ -107,7 +104,6 @@ function sub(){
 	console.log("newArrayObj = "+newArrayObj);
 	var openId = $("#openId").val();
 	var mpcvArr=newArrayObj;
-	alert(newArrayObj);
 	if(newArrayObj=="" ||newArrayObj==null|| newArrayObj==undefined){
 		$("#complaintVoucherPictureNull").attr("style", "display: block;");
 		return false;
@@ -122,11 +118,9 @@ function sub(){
 	  dataType:"json",
 	  contentType: "application/json",
 	  success:function (data) {
-		/*var jsonObj = JSON.stringify(data);// 转成JSON格式
-		 var result = $.parseJSON(jsonObj);// 转成JSON对象
-		 console.log(result);*/
 		 if(data.result=="sussess"){//存在数据时，拼接数据
 			 window.alert("添加成功");
+			 window.location.href = "../personalCenter/complaintRecord.html"
 		 }else{
 			 window.alert("添加失败");
 		 }

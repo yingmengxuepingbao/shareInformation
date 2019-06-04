@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,12 +55,28 @@ public class MsgPushComplaintRecordController {
 			msgPushComplaintRecord.setMpcvList(mpcvList);
 			number = msgPushComplaintRecordService.addComplaint(msgPushComplaintRecord);
 		}
-		
 		Map<String,Object> returnMap =new HashMap<String,Object>();
 		if(number>0) {
 			returnMap.put("result", "sussess");
 		}
 		return returnMap;
 	}
+	
+	/**
+	 * 添加投诉记录
+	 * @param msgPushComplaintRecord
+	 * @return
+	 */
+	@RequestMapping(value = "/selectComplaint", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> selectComplaint(HttpServletRequest request){
+		String openId = request.getParameter("openId");
+		List<MsgPushComplaintRecord> list = msgPushComplaintRecordService.getComplaintList(openId);
+		Map<String,Object> returnMap =new HashMap<String,Object>();
+		 returnMap.put("list", list);
+		 returnMap.put("count", list.size());
+		return returnMap;
+	}	
+
 }
 

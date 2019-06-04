@@ -1,7 +1,9 @@
 package com.zyx.mapper;
 
-import com.zyx.model.MsgPushComplaintRecord;
+import java.util.List;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.zyx.model.MsgPushComplaintRecord;
 
 /**
  * <p>
@@ -20,4 +22,12 @@ public interface MsgPushComplaintRecordMapper extends BaseMapper<MsgPushComplain
 	 * 添加投诉信息
 	 */
 	public int	addComplaint(MsgPushComplaintRecord msgPushComplaintRecord);
+	/*
+	 * 根据投诉用户id查询投诉总条数
+	 */
+	public int selectCountByComplaintUserId(String complaintUserId);
+	/*
+	 * 根据用户id查询用户投诉记录
+	 */
+	public List<MsgPushComplaintRecord> selectMsgPushComplaintRecord(String complaintUserId);
 }

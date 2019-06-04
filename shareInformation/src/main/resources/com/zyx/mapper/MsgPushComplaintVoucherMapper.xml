@@ -12,7 +12,8 @@
     </resultMap>
 	<sql id="Base_Column_List">
 		v.complaint_voucher_id,v.complaint_voucher_picture,v.complaint_id
-		,v.create_time,v.update_time
+		,DATE_FORMAT(v.create_time,'%Y-%m-%d') create_time
+		,DATE_FORMAT(v.update_time,'%Y-%m-%d') update_time
 	</sql>
 	 <!-- 获取UUID -->
 	<select id="getUUID" resultType="String">
@@ -29,4 +30,16 @@
 		,now(),now())
 		 </foreach>		
 	</insert>
+	<!-- 根据投诉用户编号，查询投诉凭证 -->
+	<select id="selectComplaintVoucherByUserId" parameterType="String" resultMap="BaseResultMap">
+		select 
+			<include refid="Base_Column_List"/>
+	 	from 
+	 		msg_push_complaint_record r, 
+	 		msg_push_complaint_voucher v
+		where 
+			r.complaint_id = v.complaint_id
+			and 
+			complaint_user_id=#{complaintUserId,jdbcType=VARCHAR}
+	</select>
 </mapper>

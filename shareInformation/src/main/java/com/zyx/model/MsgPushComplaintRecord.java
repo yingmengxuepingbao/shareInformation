@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.stereotype.Component;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,6 +20,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * @author yixin123
  * @since 2019-05-30
  */
+@Component
 @TableName("msg_push_complaint_record")
 public class MsgPushComplaintRecord implements Serializable {
 
@@ -48,12 +51,12 @@ public class MsgPushComplaintRecord implements Serializable {
      * 创建日期
      */
     @TableField("create_time")
-    private Date createTime;
+    private String createTime;
     /**
      * 更新日期
      */
     @TableField("update_time")
-    private Date updateTime;
+    private String updateTime;
     
     //投诉凭证记录表
     private List<MsgPushComplaintVoucher> mpcvList;
@@ -61,6 +64,8 @@ public class MsgPushComplaintRecord implements Serializable {
     private String openId;
     //用于接收前台传输的图片路径
     private String[] mpcvArr;
+    //活动名称
+    private String activityName;
     
     public String getComplaintId() {
         return complaintId;
@@ -94,23 +99,23 @@ public class MsgPushComplaintRecord implements Serializable {
         this.complaintReason = complaintReason;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+    public String getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+	public String getUpdateTime() {
+		return updateTime;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
 
-    public List<MsgPushComplaintVoucher> getMpcvList() {
+	public List<MsgPushComplaintVoucher> getMpcvList() {
 		return mpcvList;
 	}
 
@@ -134,6 +139,14 @@ public class MsgPushComplaintRecord implements Serializable {
 		this.mpcvArr = mpcvArr;
 	}
 
+	public String getActivityName() {
+		return activityName;
+	}
+
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+
 	@Override
     public String toString() {
         return "MsgPushComplaintRecord{" +
@@ -145,7 +158,8 @@ public class MsgPushComplaintRecord implements Serializable {
         ", updateTime=" + updateTime +
         ", mpcvList=" + mpcvList +
         ", openId=" + openId +
-         ", mpcvArr=" + mpcvArr +
+        ", mpcvArr=" + mpcvArr +
+        ", activityName=" + activityName +
         "}";
     }
 }

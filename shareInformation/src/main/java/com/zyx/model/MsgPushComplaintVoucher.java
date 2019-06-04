@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.stereotype.Component;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -17,6 +19,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * @author yixin123
  * @since 2019-05-30
  */
+@Component
 @TableName("msg_push_complaint_voucher")
 public class MsgPushComplaintVoucher implements Serializable {
 
@@ -42,12 +45,12 @@ public class MsgPushComplaintVoucher implements Serializable {
      * 创建日期
      */
     @TableField("create_time")
-    private Date createTime;
+    private String createTime;
     /**
      * 更新日期
      */
     @TableField("update_time")
-    private Date updateTime;
+    private String updateTime;
 
 
     public String getComplaintVoucherId() {
@@ -66,23 +69,23 @@ public class MsgPushComplaintVoucher implements Serializable {
         this.complaintVoucherPicture = complaintVoucherPicture;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+    public String getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+	public String getUpdateTime() {
+		return updateTime;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
 
-    public String getComplaintId() {
+	public String getComplaintId() {
 		return complaintId;
 	}
 

@@ -1,7 +1,9 @@
 package com.zyx.service;
 
-import com.zyx.model.MsgPushComplaintRecord;
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
+import com.zyx.model.MsgPushComplaintRecord;
 
 /**
  * <p>
@@ -17,5 +19,8 @@ public interface MsgPushComplaintRecordService extends IService<MsgPushComplaint
 	 * 添加投诉信息
 	 */
 	public int	addComplaint(MsgPushComplaintRecord msgPushComplaintRecord);
-
+	/*
+	 *根据微信openid 查询用户id,根据用户id关联查询投诉信息 
+	 */
+	public List<MsgPushComplaintRecord> getComplaintList(String openId);
 }

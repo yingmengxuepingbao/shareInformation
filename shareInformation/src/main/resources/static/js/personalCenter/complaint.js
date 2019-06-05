@@ -30,9 +30,9 @@ function compress() {
 	$("#complaintReasonNameNull").attr("style", "display: none;");
 	
 	let fileObj = document.getElementById("file").files[0]; //上传文件的对象
-	var dataURL=  window.URL.createObjectURL(fileObj);
-	console.log("dataURL = "+dataURL);
-	arrayObj.push(dataURL);//将图片路径放入数组
+//	var dataURL=  window.URL.createObjectURL(fileObj);
+//	console.log("dataURL = "+dataURL);
+	arrayObj.push($("#file").val());//将图片路径放入数组
     if(fileObj !=undefined){//点击确定走/取消退出
 		//最多上传五张图片
 		var count = $("#count").val();

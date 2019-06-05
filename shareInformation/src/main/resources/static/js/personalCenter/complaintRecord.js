@@ -36,8 +36,8 @@ $(function(){
 						+"<td><div id='imgCount'> </div></td>"
 						+"</tr>";
 				 $("#divData").after(str);
-					 alert(result.list[i].mpcvList.length);
 					 for (var j = 0; j < result.list[i].mpcvList.length; j++) {
+						 alert(result.list[i].mpcvList[j].complaintVoucherPicture);
 						//获取图片路径
 						 var str ="<div class='del_div' id='del"+j+"' style='display:inline-block;margin-left:10px;'>" 
 							+"<img id='img"+j+"'  src='"+result.list[i].mpcvList[j].complaintVoucherPicture+"'  class='myImg'>"

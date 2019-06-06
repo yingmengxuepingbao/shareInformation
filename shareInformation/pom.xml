@@ -24,7 +24,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
-
+<!-- https://mvnrepository.com -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -80,8 +80,9 @@
 		<!-- 解决：org.apache.ibatis.binding.BindingException: end -->
 	<!-- 添加json解析 -->
 	<dependency>
-	    <groupId>com.fasterxml.jackson.core</groupId>
-	    	<artifactId>jackson-databind</artifactId>
+       <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20180130</version>
 	</dependency>
 	<!-- 添加json解析 end -->
 	</dependencies>

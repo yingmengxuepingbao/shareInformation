@@ -3,7 +3,6 @@ package com.zyx.controller;
 
 import javax.xml.transform.Result;
 
-import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +26,7 @@ public class MsgPushUserWxRelationshipController {
    // private static Logger logger = LoggerFactory.getLogger(MainController.class);
 
     /**
-               * 登录
+     * 登录
      * @param
      */
     @ResponseBody

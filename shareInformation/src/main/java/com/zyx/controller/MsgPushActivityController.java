@@ -21,8 +21,10 @@ import com.zyx.model.MsgPushActivity;
 import com.zyx.model.MsgPushActivityRule;
 import com.zyx.model.MsgPushAwardReceivingWay;
 import com.zyx.model.MsgPushUser;
+import com.zyx.model.WinXinEntity;
 import com.zyx.service.MsgPushActivityService;
 import com.zyx.service.MsgPushUserService;
+import com.zyx.util.WeinXinUtil;
 
 /**
  * <p>
@@ -175,5 +177,26 @@ public class MsgPushActivityController {
 		}
 		return returnMap;
 	}
+	
+	/**
+	 * 转发
+	 */
+	  @RequestMapping(value = "/share", method = RequestMethod.POST)
+	  @ResponseBody
+	  public Map<String, Object> share(HttpServletRequest request,HttpServletResponse response) {
+		//微信分享
+		  String strUrl = "http://www.zhangyixin.com"       //换成安全域名
+                  + request.getContextPath()   //项目名称  
+                  + request.getServletPath()   //请求页面或其他地址  
+                  + "?" + (request.getQueryString()); //参数  
+          WinXinEntity wx = WeinXinUtil.getWinXinEntity(strUrl);
+          //将wx的信息到给页面
+          request.setAttribute("wx", wx);
+		return null;
+	   
+	  }
+	  
+	
+	
 }
 
